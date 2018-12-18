@@ -1,0 +1,34 @@
+start_phase: 0
+
+# swing ctrl type:
+swing_ctrl_type: ConfigBodyFootPlanningCtrl
+
+# Initialization
+initial_jpos: [0.07, -0.92, 1.7, -0.05029, -0.93, 1.7]
+#initial_jpos: [0.02, -0.92, 1.55, -0.02, -0.93, 1.59]
+#initial_jpos: [0.025, -1.1, 1.6, -0.025, -1.1, 1.6]
+body_height: 0.9
+body_pitch: 0.06
+
+# Timing Parameters (sec)
+jpos_initialization_time: 1.3
+com_lifting_time: 2.0
+
+## Experiment
+swing_time: 0.33
+st_transition_time: 0.03
+end_transition_time: 0.03
+stance_time: 0.01
+
+## Slow
+#swing_time: 0.85
+#st_transition_time: 0.33
+#end_transition_time: 0.33
+#stance_time: 0.31
+
+# 0: default stepping test (no planning)
+planning_frequency: 1
+transition_phase_mix_ratio: 0.2
+double_stance_mix_ratio: 0.0
+# contact_switch_check: false
+contact_switch_check: true

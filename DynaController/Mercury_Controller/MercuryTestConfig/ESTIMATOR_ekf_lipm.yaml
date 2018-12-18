@@ -1,0 +1,18 @@
+wf_intensity: 0.001 #;//0.00078;   // m/(s^2)/sqrt(Hz) // imu process noise intensity
+wbf_intensity: 10.0 #;	  // m/(s^3)/sqrt(Hz)  // imu bias intensity
+
+ww_intensity: 0.000523  # rad/s/sqrt(Hz) // angular velocity process noise intensity
+wbw_intensity: 0.000618 #; // rad/(s^2)/sqrt(Hz)	 // ang vel bias intensity
+
+wp_intensity_default: 0.001 #  // m/sqrt(Hz)	 // default foot location noise intensity
+wp_intensity_unknown: 1000.0 #;   // m/sqrt(Hz)	 // noise intensity when there is no foot contact
+
+n_p: 1000.01 #; // foot measurement noise intensity.
+
+n_v_default: 1000.01 #;   // default noise intensity of body velocity measurement    
+n_v_unknown: 10000 #;   // unknown noise intensity from body velocity measurement
+
+n_com_default: 1000.01 #;   // default noise intensity of body velocity measurement
+n_com_unknown: 10000 #;   // unknown noise intensity from body velocity measurement
+
+

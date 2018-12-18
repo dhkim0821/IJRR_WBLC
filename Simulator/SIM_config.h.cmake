@@ -1,0 +1,7 @@
+#ifndef SIMULATION_CONFIG_H
+#define SIMULATION_CONFIG_H
+
+#define SIM_MODEL_PATH "@SIM_MODEL_PATH@"
+#define SIM_DATA_PATH "@SIM_DATA_PATH@"
+
+#endif

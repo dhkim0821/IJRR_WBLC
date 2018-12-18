@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<!-- [[ Warnning ]] revolute type joint require limit, gain, dynamics setting -->
+<robot name="valkyrie_left_leg" xmlns:xacro="http://ros.org/wiki/xacro">
+ <link name="pelvis">
+  <inertial>
+   <mass value="8.22"/>
+   <origin rpy="0 0 0" xyz="-0.00532 -0.003512 -0.0036"/>
+   <inertia ixx="0.11866378" ixy="-0.000143482" ixz="0.003271293" iyy="0.097963425" iyz="0.002159545" izz="0.083854638"/>
+  </inertial>
+ </link>
+
+ <joint name="leftHipYaw" type="continuous">
+   <origin rpy="0.0 0.0 0.0" xyz="0.0 0.1016 -0.1853"/>
+   <axis xyz="0 0 1"/>
+   <parent link="pelvis"/>
+   <child link="leftHipYawLink"/>
+ </joint>
+ <link name="leftHipYawLink">
+   <inertial>
+     <mass value="2.39"/>
+     <origin rpy="0 0 0" xyz="0.02176 -0.00131 0.03867"/>
+     <inertia ixx="0.017260978" ixy="0.0" ixz="0.0" iyy="0.014866198" iyz="0.0" izz="0.011238178"/>
+   </inertial>
+ </link>
+
+ <joint name="leftHipRoll" type="continuous">
+   <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+   <axis xyz="1 0 0"/>
+   <parent link="leftHipYawLink"/>
+   <child link="leftHipRollLink"/>
+ </joint>
+ <link name="leftHipRollLink">
+   <inertial>
+     <mass value="3.665"/>
+     <origin rpy="0 0 0" xyz="0.012959 0.00755 -0.015950"/>
+     <inertia ixx="0.005978962" ixy="-0.000234823" ixz="0.000553962" iyy="0.009372646" iyz="0.000778956" izz="0.008193117"/>
+   </inertial>
+ </link>
+ 
+ <joint name="leftHipPitch" type="continuous">
+   <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.0609"/>
+   <axis xyz="0 1 0"/>
+   <parent link="leftHipRollLink"/>
+   <child link="leftHipPitchLink"/>
+ </joint>
+ <link name="leftHipPitchLink">
+   <inertial>
+     <mass value="10.2"/>
+     <origin rpy="0 0 0" xyz="0.016691 0.091397 -0.207875"/>
+     <inertia ixx="0.24083413" ixy="3.5915e-05" ixz="0.003699383" iyy="0.25689705" iyz="-0.001333005" izz="0.023276352"/>
+   </inertial>
+ </link>
+  <joint name="leftKneePitch" type="continuous">
+  <origin rpy="0.0 0.0 0.0" xyz="0.000112225 0.0361046 -0.430959"/>
+  <axis xyz="0 1 0"/>
+  <parent link="leftHipPitchLink"/>
+  <child link="leftKneePitchLink"/>
+ </joint>
+ <link name="leftKneePitchLink">
+  <inertial>
+   <mass value="6.2"/>
+   <origin rpy="0 0 0" xyz="-0.022183  0.001703  -0.189418"/>
+   <inertia ixx="0.086935683" ixy="9.929e-05" ixz="0.000573207" iyy="0.091584066" iyz="0.000313745" izz="0.014017272"/>
+  </inertial>
+ </link>
+ <joint name="leftAnklePitch" type="continuous">
+  <origin rpy="0.0 0.0 0.0" xyz="-0.0102381 0.0 -0.40627"/>
+  <axis xyz="0 1 0"/>
+  <parent link="leftKneePitchLink"/>
+  <child link="leftAnklePitchLink"/>
+ </joint>
+ <link name="leftAnklePitchLink">
+  <inertial>
+   <mass value="0.03"/>
+   <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+   <inertia ixx="4.377e-06" ixy="0.0" ixz="0.0" iyy="4.322e-06" iyz="0.0" izz="7.015e-06"/>
+  </inertial>
+ </link>
+ <joint name="leftAnkleRoll" type="continuous">
+  <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  <axis xyz="1 0 0"/>
+  <parent link="leftAnklePitchLink"/>
+  <child link="leftFoot"/>
+ </joint>
+ <link name="leftFoot">
+  <inertial>
+   <mass value="2.27"/>
+   <origin rpy="0 0 0" xyz="0.037702  0.005161  -0.047634"/>
+   <inertia ixx="0.00623936" ixy="0.000217174" ixz="0.001340587" iyy="0.017786991" iyz="-0.000187749" izz="0.020774433"/>
+  </inertial>
+ </link>
+ <link name="leftCOP_Frame">
+  <inertial>
+   <mass value="0.1"/>
+   <origin rpy="0 0 0" xyz="0 0 0"/>
+   <inertia ixx="8.33333333333e-05" ixy="0.0" ixz="0.0" iyy="8.33333333333e-05" iyz="0.0" izz="0.000125"/>
+  </inertial>
+ </link>
+ <joint name="leftCOP_Offset" type="fixed">
+   <!-- <origin rpy="0.0 0.0 0.0" xyz="0.0189 0.0 -0.0783"/> -->
+   <origin rpy="0.0 0.0 0.0" xyz="0.037702 0.005161 -0.087634"/>
+   <axis xyz="0 0 1"/>
+   <parent link="leftFoot"/>
+   <child link="leftCOP_Frame"/>
+ </joint>
+</robot>

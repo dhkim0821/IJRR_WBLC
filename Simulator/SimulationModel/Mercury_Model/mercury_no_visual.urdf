@@ -1,0 +1,328 @@
+<?xml version="1.0" ?>
+<robot name="mercury" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- ===== DUMMY 'BASE' LINK ==== -->
+  <link name="body">
+    <inertial>
+      <!-- <mass value="8.9"/> -->
+      <mass value="9.5"/>
+      <!-- <origin xyz="0.00347 0.0 0.22524"/> -->
+      <origin xyz="-0.04 0.0 0.22524"/>
+      <inertia ixx="0.3006167" ixy="0" ixz="0" iyy="0.23837" iyz="0" izz="0.09690467"/>
+    </inertial>
+  </link>
+  <!-- IMU -->
+  <joint name="fixed_imu" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="-0.02 -0.07 0.22"/>
+    <parent link="body"/>
+    <child link="imu" />
+  </joint>
+  <link name="imu">
+    <inertial>
+      <mass value="0.0000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.0000000001" ixy="0" ixz="0.0" iyy="0.000000001" iyz="0" izz="0.00000000001"/>
+    </inertial>
+  </link>
+
+
+  <!--!!!!!!!!!!!!!!!!!!!!!RIGHT LEG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <joint name="1_torso_to_abduct_r_j" type="continuous">
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.1397 0.0"/>
+    <parent link="body"/>
+    <child link="abduct_r"/>
+  </joint>
+  <link name="abduct_r">
+    <inertial>
+      <mass value="2.1656"/>
+      <origin xyz="-0.03416 -0.00075 0.04293"/>
+      <inertia ixx="0.003735" ixy="0.0" ixz="0.0" iyy="0.01391" iyz="0.0" izz="0.01355"/>
+    </inertial>
+  </link>
+
+  <joint name="abduct_r_to_thigh_r_j" type="continuous">
+    <axis xyz="0 1 0"/>
+    <!-- <origin rpy="0 0 0.0" xyz="0.0 0.0 -0.03535"/> -->
+    <origin rpy="0.015 0.0 -0.02" xyz="0.0 0.0 -0.03535"/>
+    <parent link="abduct_r"/>
+    <child link="thigh_r"/>
+  </joint>
+  <link name="thigh_r">
+    <inertial>
+      <!-- <mass value="3.682"/> -->
+      <mass value="3.2"/>
+      <origin xyz="-0.00396 0.000018 -0.175"/>
+      <inertia ixx="0.038482" ixy="0" ixz="0.0" iyy="0.039835" iyz="-0.003" izz="0.0042934"/>
+    </inertial>
+  </link>
+
+  <joint name="thigh_r_to_knee_r_j" type="continuous">
+    <axis xyz="0 1 0"/>
+    <!--<origin rpy="0 0 -0.05974278" xyz="0.0181 0.0 -0.4575"/>-->
+    <origin rpy="0.02 0 0.04" xyz="0.0181 0.005 -0.4575"/>
+    <parent link="thigh_r"/>
+    <child link="shank_r"/>
+  </joint>
+  <link name="shank_r">
+    <inertial>
+      <mass value="0.649"/>
+      <origin xyz="0.0 0.0 -0.235"/>
+      <inertia ixx="0.00338" ixy="0" ixz="0.0" iyy="0.00338" iyz="0" izz="0.000011"/>
+    </inertial>
+  </link>
+
+  <joint name="ankle_r" type="continuous">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 -0.47"/>
+    <parent link="shank_r"/>
+    <child link="rfoot" />
+  </joint>
+  <link name="rfoot">
+    <inertial>
+      <mass value="0.123"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0.0" iyy="0.00001" iyz="0" izz="0.00001"/>
+    </inertial>
+    <collision>
+      <geometry>
+        <box size="0.2 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.018"/>
+    </collision>
+  </link>
+
+  <!--!!!!!!!!!!!!!!!!!!!!!left LEG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <joint name="2_torso_to_abduct_l_j" type="continuous">
+    <axis xyz="1 0 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.1397 0.0"/>
+    <parent link="body"/>
+    <child link="abduct_l"/>
+  </joint>
+  <link name="abduct_l">
+    <inertial>
+      <mass value="2.1656"/>
+      <origin xyz="-0.03416 0.00075 0.04293"/>
+      <inertia ixx="0.003735" ixy="0.0" ixz="0.0" iyy="0.01391" iyz="0.0" izz="0.01355"/>
+    </inertial>
+  </link>
+
+  <joint name="abduct_l_to_thigh_l_j" type="continuous">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0.0 0 0.01" xyz="0.0 0.0 -0.03535"/>
+    <parent link="abduct_l"/>
+    <child link="thigh_l"/>
+  </joint>
+  <link name="thigh_l">
+    <inertial>
+      <!-- <mass value="3.682"/> -->
+      <mass value="3.2"/>
+      <!-- <origin xyz="-0.00396 -0.000018 -0.24"/> -->
+      <origin xyz="-0.00396 -0.000018 -0.175"/>
+      <inertia ixx="0.038482" ixy="0" ixz="0.0" iyy="0.039835" iyz="0" izz="0.0042934"/>
+    </inertial>
+  </link>
+
+  <joint name="thigh_l_to_knee_l_j" type="continuous">
+    <axis xyz="0 1 0"/>
+    <!--<origin rpy="0 0 -0.00472424" xyz="0.0181 0.0 -0.4575"/>-->
+    <origin rpy=" 0.008 0 0.00" xyz="0.0181 -0.005 -0.4575"/>
+    <parent link="thigh_l"/>
+    <child link="shank_l"/>
+    <!--    <dynamics damping="1.0"/>-->
+  </joint>
+  <link name="shank_l">
+    <inertial>
+      <mass value="0.649"/>
+      <origin xyz="0.0 0.0 -0.235"/>
+      <inertia ixx="0.00338" ixy="0" ixz="0.0" iyy="0.00338" iyz="0" izz="0.000011"/>
+    </inertial>
+  </link>
+
+  <joint name="ankle_l" type="continuous">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.0165 -0.47"/>
+    <parent link="shank_l"/>
+    <child link="lfoot" />
+  </joint>
+  <link name="lfoot">
+    <inertial>
+      <mass value="0.123"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.00001" ixy="0" ixz="0.0" iyy="0.00001" iyz="0" izz="0.00001"/>
+    </inertial>
+    <collision>
+      <geometry>
+        <box size="0.2 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.018"/>
+    </collision>
+  </link>
+
+  <!--!!!!!!!!!!!!!!!!!!!!! LED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!-- LED_Body 0: attached on the body front -->
+  <joint name="fixed_bodyled0" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.077 0.0 0.0"/>
+    <parent link="body"/>
+    <child link="body_led0" />
+  </joint>
+  <link name="body_led0">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+    <!-- LED_Body 1: attached on the body front -->
+  <joint name="fixed_bodyled1" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.077 0.142 0.3"/>
+    <parent link="body"/>
+    <child link="body_led1" />
+  </joint>
+  <link name="body_led1">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Body 2: attached on the body front -->
+  <joint name="fixed_bodyled2" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.077 -0.142 0.3"/>
+    <parent link="body"/>
+    <child link="body_led2" />
+  </joint>
+  <link name="body_led2">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Right 0: On the Right thigh upper -->
+  <joint name="fixed_led1" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.075 0.0 -0.093"/>
+    <parent link="thigh_r"/>
+    <child link="rleg_led0" />
+  </joint>
+  <link name="rleg_led0">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Right 1: On the Right thigh lower -->
+  <joint name="fixed_led2" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.075 0.005 -0.42"/>
+    <parent link="thigh_r"/>
+    <child link="rleg_led1" />
+  </joint>
+  <link name="rleg_led1">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.000000001" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Right 2: On the Right Shank upper -->
+  <joint name="fixed_led3" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.02 -0.060"/>
+    <parent link="shank_r"/>
+    <child link="rleg_led2" />
+  </joint>
+  <link name="rleg_led2">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Right 3: On the Right Shank lower (foot) -->
+  <joint name="fixed_led4" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.0365 -0.47"/>
+    <parent link="shank_r"/>
+    <child link="rleg_led3" />
+  </joint>
+  <link name="rleg_led3">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Left 0: On the Left thigh upper -->
+  <joint name="fixed_led6" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.075 0.0 -0.098"/>
+    <parent link="thigh_l"/>
+    <child link="lleg_led0" />
+  </joint>
+  <link name="lleg_led0">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Left 1: On the Left thigh lower -->
+  <joint name="fixed_led7" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.075 -0.005 -0.42"/>
+    <parent link="thigh_l"/>
+    <child link="lleg_led1" />
+  </joint>
+  <link name="lleg_led1">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.000000001" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Left 2: On the Left Shank upper -->
+  <joint name="fixed_led8" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.02 -0.062"/>
+    <parent link="shank_l"/>
+    <child link="lleg_led2" />
+  </joint>
+  <link name="lleg_led2">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+  <!-- LED_Left 3: On the Left Shank lower -->
+  <joint name="fixed_led9" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.0 0.02 -0.47"/> <!-- -0.0165 m in for y direction -->
+    <parent link="shank_l"/>
+    <child link="lleg_led3" />
+  </joint>
+  <link name="lleg_led3">
+    <inertial>
+      <mass value="0.000000000001"/>
+      <origin xyz="0.0 0.0 0.0"/>
+      <inertia ixx="0.000000001" ixy="0" ixz="0.0" iyy="0.00000000338" iyz="0" izz="0.000000000011"/>
+    </inertial>
+  </link>
+
+</robot>

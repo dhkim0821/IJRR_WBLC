@@ -1,0 +1,5 @@
+## Walking Test ********************************* 
+test_name: walking_config_test
+
+## Body Ctrl Test ********************************* 
+#test_name: body_ctrl_test

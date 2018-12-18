@@ -1,0 +1,8 @@
+t_const: 0.01
+xdot_limit: 1.0
+ydot_limit: 1.5
+
+
+# t_const: 0.0
+# xdot_limit: 3.0
+# ydot_limit: 3.5

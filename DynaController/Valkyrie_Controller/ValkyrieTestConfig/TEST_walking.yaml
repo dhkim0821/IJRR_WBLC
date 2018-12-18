@@ -1,0 +1,24 @@
+# Initialization
+body_height: 1.05 
+
+# Timing Parameters (sec)
+com_lifting_time: 2.0
+
+## Experiment
+swing_time: 0.33
+st_transition_time: 0.03
+end_transition_time: 0.03
+stance_time: 0.01
+
+## Slow
+#swing_time: 0.85
+#st_transition_time: 0.33
+#end_transition_time: 0.33
+#stance_time: 0.31
+
+replanning: true
+#replanning: false
+transition_phase_mix_ratio: 0.2
+double_stance_mix_ratio: 0.0
+# contact_switch_check: false
+contact_switch_check: true

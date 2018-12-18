@@ -1,0 +1,8 @@
+# Initialization
+body_height: 1.05
+
+# Timing Parameters (sec)
+body_lifting_time: 2.0
+body_stay_time: 10000.
+
+

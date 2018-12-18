@@ -1,0 +1,4 @@
+prediction_variance: [.1, .1, .1, .1]
+observation_variance: [700.0, 700.0, 3000.0, 7000.]
+# prediction_variance: [0.1, 0.1, 0.1, 0.1]
+# observation_variance: [.01, .01, .01, 0.01]

@@ -1,0 +1,30 @@
+start_phase: 0
+
+# Initialization
+#initial_jpos: [0., -0.06, -0.75, 1.32, 0.93,
+               #0., 0.06, -0.75, 1.32, 0.93]
+initial_jpos: [0., -0.08, -1.05, 1.51, 0.85, 0., 0.08, -1.05, 1.51, 0.85]
+body_height: 1.0
+
+# Timing Parameters (sec)
+jpos_initialization_time: 2.0
+com_lifting_time: 2.0
+
+## Experiment
+swing_time: 0.33
+st_transition_time: 0.03
+end_transition_time: 0.03
+stance_time: 0.01
+
+## Slow
+#swing_time: 0.45
+#st_transition_time: 0.13
+#end_transition_time: 0.13
+#stance_time: 0.11
+
+#replanning: false
+replanning: true
+transition_phase_mix_ratio: 0.2
+double_stance_mix_ratio: 0.0
+# contact_switch_check: false
+contact_switch_check: true

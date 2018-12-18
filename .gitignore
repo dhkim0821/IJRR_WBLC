@@ -1,0 +1,14 @@
+build
+xcode_build
+./experiment_data
+Configuration.h
+SIM_Configuration.h
+.DS_Store
+*~
+experiment_data
+tags
+experiment_data_*
+ResultData
+.#*
+*.pyc
+config.h
