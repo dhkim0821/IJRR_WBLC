@@ -59,6 +59,7 @@ class DracoBip_Dyn_environment
         void _Copy_Array(double * , double *, int);
         void _CheckFootContact(bool & r_contact, bool & l_contact);
         void _hold_XY();
+        void _hold_Orientation();
         void _ZeroInput_VirtualJoint();
         void _ParamterSetup();
 

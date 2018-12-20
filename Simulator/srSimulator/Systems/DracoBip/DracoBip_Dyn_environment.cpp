@@ -53,7 +53,6 @@ void DracoBip_Dyn_environment::ControlFunction( void* _data ) {
     DracoBip* robot = (DracoBip*)(pDyn_env->robot_);
     DracoBip_SensorData* p_data = pDyn_env->data_;
     pDyn_env->count_++;
-
     std::vector<double> torque_command(robot->num_act_joint_);
 
     for(int i(0); i<robot->num_act_joint_; ++i){
@@ -79,6 +78,7 @@ void DracoBip_Dyn_environment::ControlFunction( void* _data ) {
 
     pDyn_env->_ZeroInput_VirtualJoint();
     pDyn_env->_hold_XY();
+    pDyn_env->_hold_Orientation();
 
     double Kp(150.);
     double Kd(15.);
@@ -92,7 +92,7 @@ void DracoBip_Dyn_environment::ControlFunction( void* _data ) {
         //robot->r_joint_[4]->m_State.m_rCommand = 0.; //pDyn_env->cmd_->jtorque_cmd[4]; 
         //robot->r_joint_[9]->m_State.m_rCommand = 0.; // pDyn_env->cmd_->jtorque_cmd[9];
     //}
-  pDyn_env->PushRobotBody();
+  //pDyn_env->PushRobotBody();
 }
 
 void DracoBip_Dyn_environment::Rendering_Fnc(){  }
@@ -171,6 +171,32 @@ void DracoBip_Dyn_environment::_hold_XY(){
         robot_->vp_joint_[1]->m_State.m_rCommand = 
             -1000. * robot_->vp_joint_[1]->m_State.m_rValue[0]
             - 50. * robot_->vp_joint_[1]->m_State.m_rValue[1];
+    }
+}
+
+void DracoBip_Dyn_environment::_hold_Orientation(){
+    static double initial_x(0.); 
+    double pos,vel;
+
+    double kp(500.0);
+    double kd(15);
+
+    if( ((double)count_*dracobip::servo_rate) < release_time_ ){
+        int idx(1);
+        pos = robot_->vr_joint_[idx]->m_State.m_rValue[0];
+        vel = robot_->vr_joint_[idx]->m_State.m_rValue[1];
+        robot_->vr_joint_[idx]->m_State.m_rCommand = -kp * pos - kd * vel;
+
+        idx = 2;
+        pos = robot_->vr_joint_[idx]->m_State.m_rValue[0];
+        vel = robot_->vr_joint_[idx]->m_State.m_rValue[1];
+
+        idx = 0;
+        pos = robot_->vr_joint_[idx]->m_State.m_rValue[0];
+        vel = robot_->vr_joint_[idx]->m_State.m_rValue[1];
+
+
+        robot_->vr_joint_[idx]->m_State.m_rCommand = -kp * pos - kd * vel;
     }
 }
 

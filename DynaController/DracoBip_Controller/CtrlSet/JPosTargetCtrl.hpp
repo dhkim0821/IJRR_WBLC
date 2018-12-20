@@ -29,13 +29,16 @@ class JPosTargetCtrl: public Controller{
 
         Task* jpos_task_;
         WBLC_ContactSpec* fixed_body_contact_;
-        WBLC* wbdc_;
-        WBLC_ExtraData* wbdc_data_;
+        WBLC* wblc_;
+        WBLC_ExtraData* wblc_data_;
 
         dynacore::Vector jpos_ini_;
         dynacore::Vector jpos_target_;
         dynacore::Vector des_jpos_;
         dynacore::Vector des_jvel_;
+        dynacore::Vector des_jacc_;
+
+        dynacore::Vector Kp_, Kd_;
 
         void _jpos_task_setup();
         void _fixed_body_contact_setup();

@@ -109,8 +109,10 @@ bool DracoBip_interface::_UpdateTestCommand(DracoBip_Command* test_cmd){
         else jvel_command_[i] = test_cmd->jvel_cmd[i];
 
         // Torque limit
-        if(test_cmd->jtorque_cmd[i] > trq_max_[i]) over_limit = true;
-        else if(test_cmd->jtorque_cmd[i] < trq_min_[i]) over_limit = true;
+        if(test_cmd->jtorque_cmd[i] > trq_max_[i]) torque_command_[i] = trq_max_[i];
+            //over_limit = true;
+        else if(test_cmd->jtorque_cmd[i] < trq_min_[i]) torque_command_[i] = trq_min_[i];
+            //over_limit = true;
         else torque_command_[i] = test_cmd->jtorque_cmd[i];
     }
     return over_limit;
