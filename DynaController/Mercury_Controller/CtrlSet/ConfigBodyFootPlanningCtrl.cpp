@@ -272,8 +272,6 @@ void ConfigBodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
 
       
     pl_param.des_loc = sp_->des_location_;
-    pl_param.des_vel[0] = 0.;
-    pl_param.des_vel[1] = 0.;
     //if(sp_->num_step_copy_ > 10){
         //pl_param.des_vel[0] = 0.03 * sp_->num_step_copy_;
         //pl_param.des_loc[0] = sp_->global_pos_local_[0];

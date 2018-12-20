@@ -30,7 +30,7 @@ def create_figures(subfigure_width=480, subfigure_height=600, starting_figure_no
     data_x = np.genfromtxt(file_path+'time.txt', delimiter='\n', dtype=(float))
     num_leg_joint = 5
     
-    st_idx = 1300;
+    st_idx = 0;
     end_idx = len(data_x) - 1
     data_x = data_x[st_idx:end_idx]
     ##--------------------------------------------------------------------------------

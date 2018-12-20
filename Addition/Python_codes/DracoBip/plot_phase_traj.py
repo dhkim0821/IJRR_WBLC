@@ -15,7 +15,7 @@ def create_figures(subfigure_width=480, subfigure_height=500, starting_figure_no
     col_index = starting_col_index
     row_index = starting_row_index
 
-    file_path = os.getcwd() + "/../../experiment_data_check/"
+    file_path = os.getcwd() + "/../../../experiment_data_check/"
 
     ## read files  ************************************************************
     # CoM data
@@ -54,12 +54,6 @@ def create_figures(subfigure_width=480, subfigure_height=500, starting_figure_no
         # np.genfromtxt(file_path+'ekf_o_v.txt', delimiter=None, dtype=(float))
     data_planner = \
         np.genfromtxt(file_path+'planner_data.txt', delimiter=None, dtype=(float))
-    data_est_mocap_body_vel = \
-            np.genfromtxt(file_path+'est_mocap_body_vel.txt', delimiter=None, dtype=(float))
-    data_est_mocap_body_pos = \
-            np.genfromtxt(file_path+'est_mocap_body_pos.txt', delimiter=None, dtype=(float))
-    data_est_com_vel = \
-            np.genfromtxt(file_path+'est_com_vel.txt', delimiter=None, dtype=(float))
 
     phase_swing_st_trans_idx = []
     phase_swing_st_idx = []
@@ -95,11 +89,7 @@ def create_figures(subfigure_width=480, subfigure_height=500, starting_figure_no
     np_stancefoot = np.array(stance_foot_loc)
 
     # data_com_pos_global = data_com_pos + data_global_pos_offset
-    data_com_global = data_config[:,0:3] + data_global_pos_offset
-    data_mocap_pos_global = data_est_mocap_body_pos + data_global_pos_offset
-    data_body_global = data_config[:,0:3] + data_global_pos_offset
-    data_estimated_com_global = data_estimated_com
-    data_estimated_com_global[:,0:2] += data_global_pos_offset[:, 0:2]
+    data_com_pos_global = data_config[:,0:3] + data_global_pos_offset
     x_pos_offset = 0.0
     st_step = 0
     num_steps = 3
@@ -163,15 +153,6 @@ def create_figures(subfigure_width=480, subfigure_height=500, starting_figure_no
         # plt.plot(data_com_pos_global[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
                 # data_est_com_vel[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
                 # linewidth=lin_width, color='orange')
-
-        #current swing
-        plt.plot(data_body_global[swing_st_idx:swing_end_idx, plot_axis], \
-                data_est_mocap_body_vel[swing_st_idx:swing_end_idx, plot_axis], \
-                linewidth=lin_width, color='crimson')
-        # next swing
-        plt.plot(data_body_global[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
-                data_est_mocap_body_vel[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
-                linewidth=lin_width, color='cyan')
 
 
 
@@ -251,23 +232,8 @@ def create_figures(subfigure_width=480, subfigure_height=500, starting_figure_no
                 # data_est_com_vel[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
                 # linewidth=lin_width, color='orange')
 
-        #current swing
-        plt.plot(data_body_global[swing_st_idx:swing_end_idx, plot_axis], \
-                data_est_mocap_body_vel[swing_st_idx:swing_end_idx, plot_axis], \
-                linewidth=lin_width, color='crimson')
-        # next swing
-        plt.plot(data_body_global[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
-                data_est_mocap_body_vel[nx_swing_st_idx:nx_swing_end_idx, plot_axis], \
-                linewidth=lin_width, color='cyan')
 
 
-       # plt.plot(data_estimated_com_global[trans1_st_idx:trans1_end_idx, plot_axis], \
-                # data_estimated_com_global[trans1_st_idx:trans1_end_idx, 2 + plot_axis], linewidth=lin_width, color='olive')
-        # plt.plot(data_estimated_com_global[swing_st_idx:swing_end_idx, plot_axis], \
-                # data_estimated_com_global[swing_st_idx:swing_end_idx, 2 + plot_axis], linewidth=lin_width, color='orange')
-        # plt.plot(data_estimated_com_global[trans2_st_idx:trans2_end_idx, plot_axis], \
-                # data_estimated_com_global[trans2_st_idx:trans2_end_idx, 2 + plot_axis], linewidth=lin_width, color='olive')
- 
         # Estimated (Steven)
         # plt.plot(data_body_global[swing_st_idx:swing_end_idx, plot_axis], \
                 # data_ekf_body_vel[swing_st_idx:swing_end_idx, plot_axis], linewidth=lin_width, color='orange')
