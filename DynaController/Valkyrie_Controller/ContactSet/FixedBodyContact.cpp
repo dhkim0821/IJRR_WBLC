@@ -4,7 +4,7 @@
 #include <Valkyrie_Controller/Valkyrie_StateProvider.hpp>
 #include <Utils/utilities.hpp>
 
-FixedBodyContact::FixedBodyContact(RobotSystem* robot):WBDC_ContactSpec(6)
+FixedBodyContact::FixedBodyContact(RobotSystem* robot):WBLC_ContactSpec(6)
 {
   robot_sys_ = robot;
   sp_ = Valkyrie_StateProvider::getStateProvider();

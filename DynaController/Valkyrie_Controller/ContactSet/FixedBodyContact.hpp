@@ -1,11 +1,11 @@
 #ifndef VALKYRIE_FIXED_BODY_CONTACT
 #define VALKYRIE_FIXED_BODY_CONTACT
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 class RobotSystem;
 class Valkyrie_StateProvider;
 
-class FixedBodyContact: public WBDC_ContactSpec{
+class FixedBodyContact: public WBLC_ContactSpec{
 public:
   FixedBodyContact(RobotSystem* );
   virtual ~FixedBodyContact();
@@ -19,5 +19,4 @@ protected:
   RobotSystem* robot_sys_;
   Valkyrie_StateProvider* sp_;
 };
-
 #endif

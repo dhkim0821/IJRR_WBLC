@@ -5,7 +5,7 @@
 
 class DracoBip_StateProvider;
 class RobotSystem;
-class WBDC_ContactSpec;
+class WBLC_ContactSpec;
 class KinWBC;
 class WBLC;
 class WBLC_ExtraData;
@@ -40,9 +40,9 @@ class DoubleContactTransCtrl: public Controller{
         Task* base_task_;
         Task* selected_joint_task_;
 
-        WBDC_ContactSpec* rfoot_contact_;
-        WBDC_ContactSpec* lfoot_contact_;
-        WBDC_ContactSpec* double_contact_;
+        WBLC_ContactSpec* rfoot_contact_;
+        WBLC_ContactSpec* lfoot_contact_;
+        WBLC_ContactSpec* double_contact_;
         KinWBC* kin_wbc_;
         WBLC* wblc_;
         WBLC_ExtraData* wblc_data_;

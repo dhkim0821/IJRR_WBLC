@@ -8,7 +8,7 @@ class RobotSystem;
 class WBLC;
 class WBLC_ExtraData;
 class KinWBC;
-class WBDC_ContactSpec;
+class WBLC_ContactSpec;
 
 class CoMCtrl: public Controller{
     public:
@@ -41,7 +41,7 @@ class CoMCtrl: public Controller{
 
         Task* com_task_;
         KinWBC* kin_wbc_;
-        WBDC_ContactSpec* double_contact_;
+        WBLC_ContactSpec* double_contact_;
         WBLC* wblc_;
         WBLC_ExtraData* wblc_data_;
 

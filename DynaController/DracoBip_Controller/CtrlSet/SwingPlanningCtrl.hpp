@@ -8,7 +8,7 @@
 
 class DracoBip_StateProvider;
 class Planner;
-class WBDC_ContactSpec;
+class WBLC_ContactSpec;
 class WBLC;
 class WBLC_ExtraData;
 
@@ -75,7 +75,7 @@ class SwingPlanningCtrl:public Controller{
         double t_prime_x_;
         double t_prime_y_;
 
-        WBDC_ContactSpec* single_contact_;
+        WBLC_ContactSpec* single_contact_;
         WBLC* wblc_;
         WBLC_ExtraData* wblc_data_;
         Planner* planner_;

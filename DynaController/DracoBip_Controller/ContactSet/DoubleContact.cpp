@@ -4,7 +4,7 @@
 #include <DracoBip_Controller/DracoBip_StateProvider.hpp>
 #include <Utils/utilities.hpp>
 
-DoubleContact::DoubleContact(const RobotSystem* robot):WBDC_ContactSpec(10)
+DoubleContact::DoubleContact(const RobotSystem* robot):WBLC_ContactSpec(10)
 {
   robot_sys_ = robot;
   sp_ = DracoBip_StateProvider::getStateProvider();

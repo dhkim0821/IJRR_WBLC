@@ -1,11 +1,11 @@
 #ifndef DRACO_BIPED_FOOT_LINEAR
 #define DRACO_BIPED_FOOT_LINEAR
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 class RobotSystem;
 class DracoBip_StateProvider;
 
-class FootLinear: public WBDC_ContactSpec{
+class FootLinear: public WBLC_ContactSpec{
     public:
         FootLinear(const RobotSystem* robot, int contact_pt);
         virtual ~FootLinear();

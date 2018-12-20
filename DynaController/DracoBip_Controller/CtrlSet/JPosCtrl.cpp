@@ -3,7 +3,7 @@
 #include <DracoBip_Controller/TaskSet/JPosTask.hpp>
 #include <DracoBip_Controller/ContactSet/FixedBodyContact.hpp>
 #include <DracoBip_Controller/DracoBip_StateProvider.hpp>
-#include <WBDC/WBDC.hpp>
+#include <WBLC/WBLC.hpp>
 #include <ParamHandler/ParamHandler.hpp>
 #include <Utils/DataManager.hpp>
 #include <DracoBip_Controller/DracoBip_DynaCtrl_Definition.h>
@@ -22,18 +22,27 @@ JPosCtrl::JPosCtrl(RobotSystem* robot):Controller(robot),
 
     jpos_task_ = new JPosTask();
     fixed_body_contact_ = new FixedBodyContact(robot);
+    dim_contact_ = fixed_body_contact_->getDim();    
+
     std::vector<bool> act_list;
     act_list.resize(dracobip::num_qdot, true);
     for(int i(0); i<dracobip::num_virtual; ++i) act_list[i] = false;
 
-    wbdc_ = new WBDC(act_list);
-    wbdc_data_ = new WBDC_ExtraData();
-    wbdc_data_->cost_weight = 
+    wbdc_ = new WBLC(act_list);
+    wbdc_data_ = new WBLC_ExtraData();
+    wbdc_data_->W_qddot_ = dynacore::Vector::Constant(dracobip::num_qdot,100.0);
+    wbdc_data_->W_rf_ = dynacore::Vector::Constant(dim_contact_,1.0);
+    wbdc_data_->W_xddot_ = dynacore::Vector::Constant(dim_contact_, 1000.0);
+    
+    wbdc_data_->tau_min_ = dynacore::Vector::Constant(dracobip::num_act_joint, -100.);
+    wbdc_data_->tau_max_ = dynacore::Vector::Constant(dracobip::num_act_joint, 100.);
+    
+/*    wbdc_data_->cost_weight = 
         dynacore::Vector::Constant(fixed_body_contact_->getDim() + 
                 jpos_task_->getDim(), 100.0);
     wbdc_data_->cost_weight.tail(fixed_body_contact_->getDim()) = 
         dynacore::Vector::Constant(fixed_body_contact_->getDim(), 0.1);
-
+*/
     sp_ = DracoBip_StateProvider::getStateProvider();
 
     printf("[ CTRL - Joint Position] Constructed\n");

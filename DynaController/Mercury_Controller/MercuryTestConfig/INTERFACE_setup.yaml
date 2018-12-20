@@ -47,5 +47,5 @@ left2_walking_duration: 3
 backward_walking_distance: 1.0
 backward_walking_duration: 10
 
-# waling_start: 10
-waling_start: 10000
+waling_start: 10
+# waling_start: 10000

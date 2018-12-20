@@ -5,7 +5,7 @@
 
 class Valkyrie_StateProvider;
 class RobotSystem;
-class WBDC_ContactSpec;
+class WBLC_ContactSpec;
 class KinWBC;
 class WBLC;
 class WBLC_ExtraData;
@@ -42,8 +42,8 @@ class DoubleContactTransCtrl: public Controller{
         Task* body_ori_task_;
         Task* torso_ori_task_;
 
-        WBDC_ContactSpec* rfoot_contact_;
-        WBDC_ContactSpec* lfoot_contact_;
+        WBLC_ContactSpec* rfoot_contact_;
+        WBLC_ContactSpec* lfoot_contact_;
         KinWBC* kin_wbc_;
         WBLC* wblc_;
         WBLC_ExtraData* wblc_data_;

@@ -1,12 +1,12 @@
 #ifndef DRACO_BIPED_DOUBLE_CONTACT
 #define DRACO_BIPED_DOUBLE_CONTACT
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 
 class RobotSystem;
 class DracoBip_StateProvider;
 
-class DoubleContact: public WBDC_ContactSpec{
+class DoubleContact: public WBLC_ContactSpec{
 public:
   DoubleContact(const RobotSystem*);
   virtual ~DoubleContact();

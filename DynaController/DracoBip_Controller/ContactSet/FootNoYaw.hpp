@@ -1,11 +1,11 @@
 #ifndef DRACO_BIPED_FOOT_NO_YAW_CONTACT
 #define DRACO_BIPED_FOOT_NO_YAW_CONTACT
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 class RobotSystem;
 class DracoBip_StateProvider;
 
-class FootNoYaw: public WBDC_ContactSpec{
+class FootNoYaw: public WBLC_ContactSpec{
     public:
         FootNoYaw(const RobotSystem* robot, int contact_pt);
         virtual ~FootNoYaw();

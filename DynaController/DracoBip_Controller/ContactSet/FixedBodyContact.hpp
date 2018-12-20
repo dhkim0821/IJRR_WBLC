@@ -1,11 +1,11 @@
 #ifndef DRACO_BIPED_FIXED_BODY_CONTACT
 #define DRACO_BIPED_FIXED_BODY_CONTACT
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 class RobotSystem;
 class DracoBip_StateProvider;
 
-class FixedBodyContact: public WBDC_ContactSpec{
+class FixedBodyContact: public WBLC_ContactSpec{
 public:
   FixedBodyContact(RobotSystem* );
   virtual ~FixedBodyContact();

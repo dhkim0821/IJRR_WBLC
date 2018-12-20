@@ -1,11 +1,11 @@
 #ifndef VALKYRIE_SINGLE_CONTACT
 #define VALKYRIE_SINGLE_CONTACT
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 class RobotSystem;
 class Valkyrie_StateProvider;
 
-class SingleContact: public WBDC_ContactSpec{
+class SingleContact: public WBLC_ContactSpec{
 public:
   SingleContact(const RobotSystem* robot, int contact_pt);
   virtual ~SingleContact();

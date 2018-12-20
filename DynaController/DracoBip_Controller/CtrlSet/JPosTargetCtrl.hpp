@@ -5,9 +5,9 @@
 
 class DracoBip_StateProvider;
 class RobotSystem;
-class WBDC_ContactSpec;
-class WBDC;
-class WBDC_ExtraData;
+class WBLC_ContactSpec;
+class WBLC;
+class WBLC_ExtraData;
 
 class JPosTargetCtrl: public Controller{
     public:
@@ -25,11 +25,12 @@ class JPosTargetCtrl: public Controller{
         void setTargetPosition(const std::vector<double> & jpos);
     protected:
         double end_time_;
+        int dim_contact_;
 
         Task* jpos_task_;
-        WBDC_ContactSpec* fixed_body_contact_;
-        WBDC* wbdc_;
-        WBDC_ExtraData* wbdc_data_;
+        WBLC_ContactSpec* fixed_body_contact_;
+        WBLC* wbdc_;
+        WBLC_ExtraData* wbdc_data_;
 
         dynacore::Vector jpos_ini_;
         dynacore::Vector jpos_target_;

@@ -26,8 +26,8 @@ class BodyFootPlanningCtrl:public SwingPlanningCtrl{
         dynacore::Vect3 initial_target_loc_;
         
         int dim_contact_;
-        WBDC_ContactSpec* rfoot_contact_;
-        WBDC_ContactSpec* lfoot_contact_;
+        WBLC_ContactSpec* rfoot_contact_;
+        WBLC_ContactSpec* lfoot_contact_;
 
         void _CheckPlanning();
         void _Replanning(dynacore::Vect3 & target_loc);

@@ -3,7 +3,7 @@
 #include <DracoBip/DracoBip_Definition.h>
 #include <DracoBip_Controller/DracoBip_StateProvider.hpp>
 
-FootNoYaw::FootNoYaw(const RobotSystem* robot, int pt):WBDC_ContactSpec(4),
+FootNoYaw::FootNoYaw(const RobotSystem* robot, int pt):WBLC_ContactSpec(4),
     contact_pt_(pt), max_Fz_(1000.)
 {
     idx_Fz_ = 3;
