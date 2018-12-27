@@ -5,7 +5,7 @@
 
 // [ Tau_x, Tau_y, Tau_z, Rx, Ry, Rz ]
 SingleContact::SingleContact(const RobotSystem* robot, int pt):
-    WBDC_ContactSpec(6),
+    WBLC_ContactSpec(6),
     contact_pt_(pt),
     max_Fz_(1000.),
     dim_U_(18)

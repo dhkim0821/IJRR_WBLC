@@ -1,11 +1,11 @@
 #ifndef Atlas_SINGLE_CONTACT
 #define Atlas_SINGLE_CONTACT
 
-#include <WBDC/WBDC_ContactSpec.hpp>
+#include <WBLC/WBLC_ContactSpec.hpp>
 class RobotSystem;
 class Atlas_StateProvider;
 
-class SingleContact: public WBDC_ContactSpec{
+class SingleContact: public WBLC_ContactSpec{
 public:
   SingleContact(const RobotSystem* robot, int contact_pt);
   virtual ~SingleContact();

@@ -4,7 +4,7 @@
 #include <Atlas_Controller/Atlas_StateProvider.hpp>
 #include <Utils/utilities.hpp>
 
-FixedBodyContact::FixedBodyContact(RobotSystem* robot):WBDC_ContactSpec(6)
+FixedBodyContact::FixedBodyContact(RobotSystem* robot):WBLC_ContactSpec(6)
 {
   robot_sys_ = robot;
   sp_ = Atlas_StateProvider::getStateProvider();

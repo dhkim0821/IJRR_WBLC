@@ -5,7 +5,7 @@
 
 class Atlas_StateProvider;
 class RobotSystem;
-class WBDC_ContactSpec;
+class WBLC_ContactSpec;
 class WBLC;
 class WBLC_ExtraData;
 class KinWBC;
@@ -46,8 +46,8 @@ class BodyCtrl: public Controller{
         Task* torso_ori_task_;
         Task* selected_joint_task_;
         KinWBC* kin_wbc_;
-        WBDC_ContactSpec* rfoot_contact_;
-        WBDC_ContactSpec* lfoot_contact_;
+        WBLC_ContactSpec* rfoot_contact_;
+        WBLC_ContactSpec* lfoot_contact_;
         WBLC* wblc_;
         WBLC_ExtraData* wblc_data_;
 
