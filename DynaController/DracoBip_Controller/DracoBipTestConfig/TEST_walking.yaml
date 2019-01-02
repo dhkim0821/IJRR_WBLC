@@ -1,5 +1,7 @@
 start_phase: 0
 
+swing_ctrl_type: BodyFootPlanningCtrl
+
 # Initialization
 #initial_jpos: [0., -0.06, -0.75, 1.32, 0.93,
                #0., 0.06, -0.75, 1.32, 0.93]

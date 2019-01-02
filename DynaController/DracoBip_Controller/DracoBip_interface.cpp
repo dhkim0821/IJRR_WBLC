@@ -91,6 +91,106 @@ void DracoBip_interface::GetCommand( void* _data, void* _command){
 
     running_time_ = (double)(count_) * dracobip::servo_rate;
     ++count_;
+
+    ////// Stepping forward
+    // if(false){
+    if(true){
+        int curr_state(0);
+        double phase_st_time = walking_st_time_;
+        if ( sp_->curr_time_ < walking_st_time_ ){ curr_state = 0; }
+        else if (sp_->curr_time_ < walking_st_time_ + walking_duration_ ){
+            // Forward step
+            curr_state = 1;
+            phase_st_time = walking_st_time_;
+        } else if( sp_->curr_time_ < 
+            walking_st_time_ + walking_duration_ + left1_walking_duration_){
+            // left1 step
+            curr_state = 2;
+            phase_st_time = walking_st_time_ + walking_duration_;
+        } else if(sp_->curr_time_ < 
+            walking_st_time_ + walking_duration_ 
+                + left1_walking_duration_
+                + right_walking_duration_){  
+            // Right Step
+            curr_state = 3;
+            phase_st_time = walking_st_time_ 
+                + walking_duration_ 
+                + left1_walking_duration_;
+        } else if(sp_->curr_time_ < 
+            walking_st_time_ + walking_duration_
+            + left1_walking_duration_
+            + right_walking_duration_
+            + left2_walking_duration_){
+            // left2 step
+            curr_state = 4;
+            phase_st_time = walking_st_time_ 
+                + walking_duration_ 
+                + left1_walking_duration_
+                + right_walking_duration_;
+
+        } else if(sp_->curr_time_ < 
+            walking_st_time_ + walking_duration_
+            + left1_walking_duration_
+            + right_walking_duration_
+            + left2_walking_duration_
+            + backward_walking_duration_){
+            // back step
+            curr_state = 5;
+            phase_st_time = walking_st_time_ 
+                + walking_duration_ 
+                + left1_walking_duration_
+                + right_walking_duration_
+                + left2_walking_duration_;
+        } else{
+            curr_state = 6;
+        }
+
+        double walking_time;
+        if(curr_state == 1){
+            walking_time = sp_->curr_time_ - phase_st_time;
+            sp_->des_location_[0] = walking_dist_ * 
+                // walking_time/walking_duration_;
+            (1-cos(walking_time/walking_duration_ * M_PI))/2.;
+        }
+        // left1 step
+        if(curr_state == 2){
+            walking_time = sp_->curr_time_ - phase_st_time;
+            sp_->des_location_[0] = walking_dist_;
+            sp_->des_location_[1] = left1_walking_dist_ * 
+                (1-cos(walking_time/left1_walking_duration_ * M_PI))/2.;   
+        }
+        // right step
+        if(curr_state ==3){
+            walking_time = sp_->curr_time_ - phase_st_time;
+            sp_->des_location_[0] = walking_dist_;
+            sp_->des_location_[1] = left1_walking_dist_ - right_walking_dist_ * 
+                (1-cos(walking_time/right_walking_duration_ * M_PI))/2.;   
+        }
+        // left2 step
+        if(curr_state == 4){
+            walking_time = sp_->curr_time_ - phase_st_time;
+            sp_->des_location_[0] = walking_dist_;
+            sp_->des_location_[1] = left1_walking_dist_ - right_walking_dist_ 
+            + left2_walking_dist_* (1-cos(walking_time/left2_walking_duration_ * M_PI))/2.;
+        }
+        // backward step
+        if(curr_state == 5){
+            walking_time = sp_->curr_time_ - phase_st_time;
+            sp_->des_location_[0] = walking_dist_ 
+            - backward_walking_dist_* (1-cos(walking_time/backward_walking_duration_ * M_PI))/2.;
+            sp_->des_location_[1] = left1_walking_dist_ 
+            - right_walking_dist_ 
+            + left2_walking_dist_; 
+        }
+
+        if(curr_state == 6){
+            sp_->des_location_[0] = walking_dist_ - backward_walking_dist_;
+            sp_->des_location_[1] = left1_walking_dist_ 
+            - right_walking_dist_ 
+            + left2_walking_dist_;
+        }
+    }
+
     sp_->curr_time_ = running_time_;
 }
 
@@ -181,5 +281,24 @@ void DracoBip_interface::_ParameterSetting(){
     handler.getVector("trq_max", trq_max_);
     handler.getVector("trq_min", trq_min_);
     
+    // walking motion setup
+    handler.getValue("walking_distance", walking_dist_);
+    handler.getValue("walking_duration", walking_duration_);
+    handler.getValue("waling_start", walking_st_time_);
+
+    handler.getValue("left1_walking_distance", left1_walking_dist_);
+    handler.getValue("left1_walking_duration", left1_walking_duration_);
+
+    handler.getValue("right_walking_distance", right_walking_dist_);
+    handler.getValue("right_walking_duration", right_walking_duration_);
+
+    handler.getValue("left2_walking_distance", left2_walking_dist_);
+    handler.getValue("left2_walking_duration", left2_walking_duration_);
+
+    handler.getValue("backward_walking_distance", backward_walking_dist_);
+    handler.getValue("backward_walking_duration", backward_walking_duration_);
+
+
+
     printf("[DracoBip_interface] Parameter setup is done\n");
 }
