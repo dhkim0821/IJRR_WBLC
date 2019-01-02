@@ -5,9 +5,11 @@
 #include <vector>
 #include <Utils/wrap_eigen.hpp>
 #include "DracoBip.h"
+#include <DynaController/DracoBip_Controller/DracoBip_StateProvider.hpp>
+
 
 //TEST
-////////////////////////////////////////////////
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #endif
@@ -44,6 +46,8 @@ class DracoBip_Dyn_environment
         interface* interface_;
         DracoBip* robot_;
 
+        DracoBip_StateProvider* sp_;
+
         srSpace*	m_Space;
         Ground*	m_ground;
 
@@ -62,6 +66,8 @@ class DracoBip_Dyn_environment
         void _hold_Orientation();
         void _ZeroInput_VirtualJoint();
         void _ParamterSetup();
+
+        void _DrawDesiredLocation();
 
         std::vector<double> push_time_;
         std::vector<double> push_force_;

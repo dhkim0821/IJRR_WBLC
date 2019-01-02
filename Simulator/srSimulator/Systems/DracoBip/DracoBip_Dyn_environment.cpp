@@ -35,7 +35,7 @@ DracoBip_Dyn_environment::DracoBip_Dyn_environment():
     data_ = new DracoBip_SensorData();
     cmd_ = new DracoBip_Command();
 
-
+    sp_= DracoBip_StateProvider::getStateProvider();
     m_Space->DYN_MODE_PRESTEP();
     m_Space->SET_USER_CONTROL_FUNCTION_2(ControlFunction);
     m_Space->SetTimestep(dracobip::servo_rate/simulation_freq_);
@@ -95,7 +95,9 @@ void DracoBip_Dyn_environment::ControlFunction( void* _data ) {
   //pDyn_env->PushRobotBody();
 }
 
-void DracoBip_Dyn_environment::Rendering_Fnc(){  }
+void DracoBip_Dyn_environment::Rendering_Fnc(){
+    _DrawDesiredLocation();
+}
 void DracoBip_Dyn_environment::_Get_Orientation(dynacore::Quaternion & rot){
     SO3 so3_body =  robot_->
         link_[robot_->link_idx_map_.find("pelvis")->second]->GetOrientation();
@@ -217,6 +219,26 @@ void DracoBip_Dyn_environment::_ZeroInput_VirtualJoint(){
 //printf("%f\n",robot->r_joint_[i]->m_State.m_rValue[0] );
 //}
 //printf("\n");
+
+void DracoBip_Dyn_environment::_DrawDesiredLocation(){
+  // Attraction Location
+  double radi(0.07);
+  double theta(0.0);
+   //double height_attraction_loc = 
+   //Terrain_Interpreter::GetTerrainInterpreter()->surface_height( HUME_System::GetHumeSystem()->state_provider_->attraction_loc_[0],
+  //                                                                                              HUME_System::GetHumeSystem()->state_provider_->attraction_loc_[1]);
+
+   double height_attraction_loc = 0.005;
+   glBegin(GL_LINE_LOOP); 
+   theta = 0.0; 
+   for (int i(0); i<3600; ++i){ 
+       theta += DEG2RAD(i*0.1);
+       glColor3f(0.5f, 0.1f, 0.f); 
+       glVertex3f(sp_->des_location_[0] + cos(theta)*radi,
+                  sp_->des_location_[1] + sin(theta)*radi, height_attraction_loc );
+   } 
+   glEnd(); 
+}
 
 void DracoBip_Dyn_environment::_ParamterSetup(){
   ParamHandler handler(DracoBipConfigPath"SIM_sr_sim_setting.yaml");

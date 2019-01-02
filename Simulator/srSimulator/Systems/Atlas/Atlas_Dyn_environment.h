@@ -4,7 +4,7 @@
 #include "LieGroup/LieGroup.h"
 #include <vector>
 #include <Utils/wrap_eigen.hpp>
-
+#include <DynaController/Atlas_Controller/Atlas_StateProvider.hpp>
 //TEST JUNHYEOK
 #include "Atlas.h"
 
@@ -40,10 +40,12 @@ public:
   void saveLandingLocation();
 public:
    Atlas_SensorData* data_;
-  Atlas_Command* cmd_;
+   Atlas_Command* cmd_;
 
- interface* interface_;
+  interface* interface_;
   Atlas* robot_;
+
+  Atlas_StateProvider* sp_;
 
   srSpace*	m_Space;
   Ground*	m_ground;
@@ -53,6 +55,7 @@ public:
   void getIMU_Data(std::vector<double> & imu_acc,
           std::vector<double> & imu_ang_vel);
  protected:
+  void _DrawDesiredLocation();
   void _Get_Orientation(dynacore::Quaternion & rot);
   void _Copy_Array(double * , double *, int);
   void _CheckFootContact(bool & r_contact, bool & l_contact);

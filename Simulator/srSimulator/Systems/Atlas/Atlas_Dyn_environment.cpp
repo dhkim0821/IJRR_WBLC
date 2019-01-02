@@ -31,6 +31,7 @@ Atlas_Dyn_environment::Atlas_Dyn_environment():
     data_ = new Atlas_SensorData();
     cmd_ = new Atlas_Command();
 
+    sp_ = Atlas_StateProvider::getStateProvider();
 
     m_Space->DYN_MODE_PRESTEP();
     m_Space->SET_USER_CONTROL_FUNCTION_2(ControlFunction);
@@ -106,9 +107,11 @@ void Atlas_Dyn_environment::ControlFunction( void* _data ) {
 }
 
 
-  void Atlas_Dyn_environment::Rendering_Fnc(){
-  }
-    void Atlas_Dyn_environment::_Get_Orientation(dynacore::Quaternion & rot){
+void Atlas_Dyn_environment::Rendering_Fnc(){
+    _DrawDesiredLocation();
+}
+
+void Atlas_Dyn_environment::_Get_Orientation(dynacore::Quaternion & rot){
         SO3 so3_body =  robot_->
             link_[robot_->link_idx_map_.find("pelvis")->second]->GetOrientation();
 
@@ -120,14 +123,34 @@ void Atlas_Dyn_environment::ControlFunction( void* _data ) {
         }
         dynacore::Quaternion ori_quat(ori_mtx);
         rot = ori_quat;
-    }
-    Atlas_Dyn_environment::~Atlas_Dyn_environment()
-    {
+}
+
+void Atlas_Dyn_environment::_DrawDesiredLocation(){
+  // Attraction Location
+  double radi(0.07);
+  double theta(0.0);
+   //double height_attraction_loc = 
+   //Terrain_Interpreter::GetTerrainInterpreter()->surface_height( HUME_System::GetHumeSystem()->state_provider_->attraction_loc_[0],
+  //                                                                                              HUME_System::GetHumeSystem()->state_provider_->attraction_loc_[1]);
+
+   double height_attraction_loc = 0.005;
+   glBegin(GL_LINE_LOOP); 
+   theta = 0.0; 
+   for (int i(0); i<3600; ++i){ 
+       theta += DEG2RAD(i*0.1);
+       glColor3f(0.5f, 0.1f, 0.f); 
+       glVertex3f(sp_->des_location_[0] + cos(theta)*radi,
+                  sp_->des_location_[1] + sin(theta)*radi, height_attraction_loc );
+   } 
+   glEnd(); 
+}
+
+Atlas_Dyn_environment::~Atlas_Dyn_environment(){
         //SR_SAFE_DELETE(interface_);
         SR_SAFE_DELETE(robot_);
         SR_SAFE_DELETE(m_Space);
         SR_SAFE_DELETE(m_ground);
-    }
+}
 
 void Atlas_Dyn_environment::_CheckFootContact(bool & r_contact, bool & l_contact){
     Vec3 lfoot_pos = robot_->
