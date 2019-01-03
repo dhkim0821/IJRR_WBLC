@@ -442,15 +442,14 @@ RBDL_DLLAPI Vector3d CalcPointVelocity (
     bool update_kinematics) {
   LOG << "-------- " << __func__ << " --------" << std::endl;
   assert (model.IsBodyId(body_id) || body_id == 0);
-  assert (model.q_size == Q.size());
-  assert (model.qdot_size == QDot.size());
-
   // Reset the velocity of the root body
   model.v[0].setZero();
 
   // update the Kinematics with zero acceleration
   if (update_kinematics) {
     UpdateKinematicsCustom (model, &Q, &QDot, NULL);
+    assert (model.q_size == Q.size());
+    assert (model.qdot_size == QDot.size());
   }
 
   unsigned int reference_body_id = body_id;

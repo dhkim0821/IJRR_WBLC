@@ -88,7 +88,7 @@ void Mercury_Kin_Model::_UpdateCentroidFrame(const dynacore::Vector & q,
 
 void Mercury_Kin_Model::getCoMJacobian(dynacore::Matrix & Jcom) const {
     Vector3d zero_vector = Vector3d::Zero();
-    dynacore::Vector q;
+    dynacore::Vector q(mercury::num_q);
 
     Jcom = dynacore::Matrix::Zero(3, model_->qdot_size);
     MatrixNd J(3, model_->qdot_size);
@@ -110,7 +110,7 @@ void Mercury_Kin_Model::getCoMJacobian(dynacore::Matrix & Jcom) const {
 
 void Mercury_Kin_Model::getCoMPos(dynacore::Vect3 & CoM_pos)const {
     Vector3d zero_vector = Vector3d::Zero();
-    dynacore::Vector q;
+    dynacore::Vector q(mercury::num_q);
 
     CoM_pos.setZero();
     Vector3d link_pos;
@@ -152,7 +152,7 @@ void Mercury_Kin_Model::getCoMVel(dynacore::Vect3 & CoM_vel) const {
 
 void Mercury_Kin_Model::getPos(int link_id, dynacore::Vect3 & pos){
     Vector3d zero;
-    dynacore::Vector q;
+    dynacore::Vector q(mercury::num_q);
 
     int bodyid = _find_body_idx(link_id);
     if(bodyid >=model_->fixed_body_discriminator){
@@ -168,7 +168,7 @@ void Mercury_Kin_Model::getPos(int link_id, dynacore::Vect3 & pos){
 
 void Mercury_Kin_Model::getOri(int link_id, dynacore::Quaternion & ori){
     Matrix3d R;
-    dynacore::Vector q;
+    dynacore::Vector q(mercury::num_q);
     R = CalcBodyWorldOrientation( *model_, q, _find_body_idx(link_id), false);
     ori = R.transpose();
 
@@ -211,7 +211,7 @@ void Mercury_Kin_Model::getAngularVel(int link_id, dynacore::Vect3 & ang_vel){
 }
 
 void Mercury_Kin_Model::getJacobian(int link_id, dynacore::Matrix &J){
-    dynacore::Vector q;
+    dynacore::Vector q(mercury::num_q);
     J = dynacore::Matrix::Zero(6, model_->qdot_size);
 
     unsigned int bodyid = _find_body_idx(link_id);
