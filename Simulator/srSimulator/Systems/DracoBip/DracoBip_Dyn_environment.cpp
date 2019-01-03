@@ -87,11 +87,18 @@ void DracoBip_Dyn_environment::ControlFunction( void* _data ) {
             Kp * (pDyn_env->cmd_->jpos_cmd[i] - p_data->jpos[i]) + 
             Kd * (pDyn_env->cmd_->jvel_cmd[i] - p_data->jvel[i]);
     }
-    //if( ( (double)(pDyn_env->count_)*dracobip::servo_rate ) 
-            //> pDyn_env->release_time_ ){
-        //robot->r_joint_[4]->m_State.m_rCommand = 0.; //pDyn_env->cmd_->jtorque_cmd[4]; 
-        //robot->r_joint_[9]->m_State.m_rCommand = 0.; // pDyn_env->cmd_->jtorque_cmd[9];
-    //}
+    if( ( (double)(pDyn_env->count_)*dracobip::servo_rate ) 
+            > pDyn_env->release_time_ ){
+        int idx(4);
+        robot->r_joint_[idx]->m_State.m_rCommand = //pDyn_env->cmd_->jtorque_cmd[4]; 
+            10. * (pDyn_env->cmd_->jpos_cmd[idx] - p_data->jpos[idx]) + 
+            2. * (pDyn_env->cmd_->jvel_cmd[idx] - p_data->jvel[idx]);
+
+        idx = 9;
+        robot->r_joint_[idx]->m_State.m_rCommand = //pDyn_env->cmd_->jtorque_cmd[4]; 
+            10. * (pDyn_env->cmd_->jpos_cmd[idx] - p_data->jpos[idx]) + 
+            2. * (pDyn_env->cmd_->jvel_cmd[idx] - p_data->jvel[idx]);
+    }
   //pDyn_env->PushRobotBody();
 }
 

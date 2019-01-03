@@ -90,10 +90,10 @@ void DracoBip_Kin_Model::_UpdateCentroidFrame(const dynacore::Vector & q,
 
     //dynacore::Vect3 com_vel;
     //getCoMVel(com_vel);
-
     //dynacore::pretty_print(h_tot, std::cout, "cent momentum");
     //dynacore::pretty_print(Ig_, std::cout, "Ig");
     //dynacore::pretty_print(centroid_vel_, std::cout, "cent vel");
+    //dynacore::pretty_print(com_pos, std::cout, "com_pos");
     //dynacore::pretty_print(com_vel, std::cout, "com_vel");
 }
 
@@ -143,10 +143,12 @@ void DracoBip_Kin_Model::getCoMPos(dynacore::Vect3 & CoM_pos) {
 
     //test
     //double rbdl_mass;
-    //dynacore::Vector qdot;
-    //Math::Vector3d rbdl_com, rbdl_com_vel, rbdl_ang_mom;
-    //RigidBodyDynamics::Utils::CalcCenterOfMass(*model_, q, qdot, rbdl_mass, 
-            //rbdl_com, &rbdl_com_vel, &rbdl_ang_mom,false);
+    //Math::VectorNd qdot, qddot;
+    //Math::Vector3d rbdl_com, rbdl_com_vel, rbdl_com_acc, rbdl_ang_mom, change_of_angular_momentum;
+    //RigidBodyDynamics::Utils::CalcCenterOfMass(*model_, q, qdot, &qddot, 
+            //rbdl_mass, 
+            //rbdl_com, &rbdl_com_vel, &rbdl_com_acc, 
+            //&rbdl_ang_mom, &change_of_angular_momentum, false);
     //printf("rbdl mass: %f\n", rbdl_mass);
     //dynacore::pretty_print(rbdl_com, std::cout, "rbdl_com");
     //dynacore::pretty_print(rbdl_com_vel, std::cout, "rbdl_com_vel");

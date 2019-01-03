@@ -4,7 +4,7 @@
 #include <DracoBip_Controller/DracoBip_StateProvider.hpp>
 
 FootLinear::FootLinear(const RobotSystem* robot, int pt):WBLC_ContactSpec(3),
-    contact_pt_(pt), max_Fz_(1000.)
+    contact_pt_(pt), max_Fz_(400.)
 {
     idx_Fz_ = 2;
     robot_sys_ = robot;

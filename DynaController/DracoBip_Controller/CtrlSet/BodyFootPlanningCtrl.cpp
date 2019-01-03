@@ -125,16 +125,18 @@ void BodyFootPlanningCtrl::_compute_torque_wblc(dynacore::Vector & gamma){
                 sp_->Q_.segment(dracobip::num_virtual, dracobip::num_act_joint))
         + Kd_.cwiseProduct(des_jvel_ - sp_->Qdot_.tail(dracobip::num_act_joint));
 
-    //dynacore::pretty_print(des_jpos_, std::cout, "des_jpos");
-    //dynacore::pretty_print(des_jvel_, std::cout, "des_jvel");
-    //dynacore::pretty_print(des_jacc_, std::cout, "des_jacc");
-    //dynacore::pretty_print(des_jacc_cmd, std::cout, "des_jacc");
-
     wblc_->MakeWBLC_Torque(
             des_jacc_cmd, contact_list_,
             gamma, wblc_data_);
 
     sp_->qddot_cmd_ = wblc_data_->qddot_;
+
+    //dynacore::pretty_print(wblc_data_->Fr_, std::cout, "Fr");
+    //dynacore::pretty_print(des_jpos_, std::cout, "des_jpos");
+    //dynacore::pretty_print(des_jvel_, std::cout, "des_jvel");
+    //dynacore::pretty_print(des_jacc_, std::cout, "des_jacc");
+    //dynacore::pretty_print(des_jacc_cmd, std::cout, "des_jacc");
+
 }
 
 void BodyFootPlanningCtrl::_task_setup(){
@@ -243,6 +245,10 @@ void BodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
     // Direct value used
     robot_sys_->getCoMPosition(com_pos);
     robot_sys_->getCoMVelocity(com_vel);
+    printf("com state: %f, %f, %f, %f\n",
+            com_pos[0], com_pos[1],
+            com_vel[0], com_vel[1]);
+
 
     // TEST 
     for(int i(0); i<2; ++i){
@@ -254,10 +260,6 @@ void BodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
 
         // com_pos[i] = sp_->jjpos_body_pos_[i] + body_pt_offset_[i];
     }
-   //  printf("planning com state: %f, %f, %f, %f\n",
-   //          com_pos[0], com_pos[1],
-   //          com_vel[0], com_vel[1]);
-
     OutputReversalPL pl_output;
     ParamReversalPL pl_param;
     pl_param.swing_time = end_time_ - state_machine_time_
@@ -291,7 +293,11 @@ void BodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
     for(int i(0); i<2; ++i){
         target_loc[i] += foot_landing_offset_[i];
     }
-   //  dynacore::pretty_print(target_loc, std::cout, "next foot loc");
+    printf("planning com state: %f, %f, %f, %f\n",
+            com_pos[0], com_pos[1],
+            com_vel[0], com_vel[1]);
+
+    dynacore::pretty_print(target_loc, std::cout, "next foot loc");
 }
 
 void BodyFootPlanningCtrl::FirstVisit(){
@@ -344,8 +350,8 @@ void BodyFootPlanningCtrl::_SetMinJerkOffset(const dynacore::Vect3 & offset){
 
 bool BodyFootPlanningCtrl::EndOfPhase(){
     if(state_machine_time_ > (end_time_ )){
-        // printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
-        //        state_machine_time_, end_time_);
+         printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
+                state_machine_time_, end_time_);
         return true;
     }
     // Swing foot contact = END
@@ -358,8 +364,8 @@ bool BodyFootPlanningCtrl::EndOfPhase(){
             contact_happen = true;
         }
         if(state_machine_time_ > end_time_ * 0.5 && contact_happen){
-            // printf("[Config Body Foot Ctrl] contact happen, state_machine_time/ end time: (%f, %f)\n",
-            //         state_machine_time_, end_time_);
+             printf("[Config Body Foot Ctrl] contact happen, state_machine_time/ end time: (%f, %f)\n",
+                     state_machine_time_, end_time_);
             return true;
         }
     }
