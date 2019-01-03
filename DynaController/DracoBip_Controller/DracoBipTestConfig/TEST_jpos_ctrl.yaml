@@ -1,7 +1,7 @@
 # Initialization
 #initial_jpos: [0.07, -0.93, 1.55, -0.0529, -0.93, 1.59]
 # initial_jpos: [0.0, -0.50, 1.0, 0.0, -0.50, 1.0]
-initial_jpos: [0., 0., -0.75, 1.5, 1., 
+initial_jpos: [0., 0., -0.75, 1.5, 1.,
                0., 0., -0.75, 1.5, 1. ]
 initialization_time: 5.0
 

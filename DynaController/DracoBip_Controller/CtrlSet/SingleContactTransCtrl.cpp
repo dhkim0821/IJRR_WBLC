@@ -110,7 +110,6 @@ void SingleContactTransCtrl::_compute_torque_wblc(dynacore::Vector & gamma){
     //dynacore::pretty_print(gamma, std::cout, "gamma");
 
     sp_->qddot_cmd_ = wblc_data_->qddot_;
-    sp_->reaction_forces_ = wblc_data_->Fr_;
 }
 
 void SingleContactTransCtrl::_task_setup(){

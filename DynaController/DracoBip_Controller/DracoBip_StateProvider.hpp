@@ -32,8 +32,7 @@ public:
   int num_step_copy_;
 
   dynacore::Vector qddot_cmd_;
-  dynacore::Vector reaction_forces_;
-
+  
   dynacore::Vect3 rfoot_pos_;
   dynacore::Vect3 lfoot_pos_;
   dynacore::Vect3 rfoot_vel_;

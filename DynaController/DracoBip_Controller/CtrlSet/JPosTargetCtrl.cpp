@@ -95,7 +95,6 @@ void JPosTargetCtrl::_jpos_ctrl_wbdc(dynacore::Vector & gamma){
             gamma, wblc_data_);
 
     sp_->qddot_cmd_ = wblc_data_->qddot_;
-    sp_->reaction_forces_ = wblc_data_->Fr_;
 }
 
 

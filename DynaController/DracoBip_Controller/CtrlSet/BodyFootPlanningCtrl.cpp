@@ -135,7 +135,6 @@ void BodyFootPlanningCtrl::_compute_torque_wblc(dynacore::Vector & gamma){
             gamma, wblc_data_);
 
     sp_->qddot_cmd_ = wblc_data_->qddot_;
-    sp_->reaction_forces_ = wblc_data_->Fr_;
 }
 
 void BodyFootPlanningCtrl::_task_setup(){
