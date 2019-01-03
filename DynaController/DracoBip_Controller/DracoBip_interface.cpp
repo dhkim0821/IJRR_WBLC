@@ -92,7 +92,20 @@ void DracoBip_interface::GetCommand( void* _data, void* _command){
     running_time_ = (double)(count_) * dracobip::servo_rate;
     ++count_;
 
-    ////// Stepping forward
+    double walking_start(5.);
+    double walking_duration(6.);
+    double walking_distance(2.5);
+    if(sp_->curr_time_ > walking_start){
+        double walking_time = sp_->curr_time_ - walking_start;
+        sp_->des_location_[0] = walking_distance * 
+            walking_time/walking_duration;
+            //(1-cos(walking_time/walking_duration * M_PI))/2.;
+    }
+    if(sp_->curr_time_ > walking_start + walking_duration){
+        sp_->des_location_[0] = walking_distance;
+    }
+///// Stepping forward
+/*
     // if(false){
     if(true){
         int curr_state(0);
@@ -190,7 +203,7 @@ void DracoBip_interface::GetCommand( void* _data, void* _command){
             + left2_walking_dist_;
         }
     }
-
+*/
     sp_->curr_time_ = running_time_;
 }
 

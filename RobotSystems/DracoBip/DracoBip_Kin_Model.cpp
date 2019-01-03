@@ -19,7 +19,7 @@ DracoBip_Kin_Model::~DracoBip_Kin_Model(){
 }
 
 void DracoBip_Kin_Model::UpdateKinematics(const dynacore::Vector & q, const dynacore::Vector & qdot){
-    //_UpdateCentroidFrame(q, qdot);
+    _UpdateCentroidFrame(q, qdot);
 }
 
 void DracoBip_Kin_Model::_UpdateCentroidFrame(const dynacore::Vector & q, 

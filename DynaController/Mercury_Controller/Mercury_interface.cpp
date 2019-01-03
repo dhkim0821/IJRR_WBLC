@@ -193,8 +193,21 @@ void Mercury_interface::GetCommand( void* _data, void* _command){
     sp_->curr_time_ = running_time_;
     sp_->phase_copy_ = test_->getPhase();
 
+    double walking_start(5.);
+    double walking_duration(6.);
+    double walking_distance(2.5);
+    if(sp_->curr_time_ > walking_start){
+        double walking_time = sp_->curr_time_ - walking_start;
+        sp_->des_location_[0] = walking_distance * 
+            walking_time/walking_duration;
+            //(1-cos(walking_time/walking_duration * M_PI))/2.;
+    }
+    if(sp_->curr_time_ > walking_start + walking_duration){
+        sp_->des_location_[0] = walking_distance;
+    }
 
     ////// Stepping forward
+/*
     // if(false){
     if(true){
         int curr_state(0);
@@ -296,7 +309,7 @@ void Mercury_interface::GetCommand( void* _data, void* _command){
             + left2_walking_dist_;
         }
     }
-
+*/
 }
 void Mercury_interface::GetReactionForce(std::vector<dynacore::Vect3> & reaction_force ){
     reaction_force.resize(2);

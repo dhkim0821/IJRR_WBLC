@@ -3,3 +3,22 @@ test_name: walking_test
 
 ## Body Ctrl Test ********************************* 
 #test_name: body_ctrl_test
+#
+
+
+walking_distance: 1.8
+walking_duration: 10
+
+left1_walking_distance: 0.7
+left1_walking_duration: 7
+
+right_walking_distance: 1.2
+right_walking_duration: 18
+
+left2_walking_distance: 0.0
+left2_walking_duration: 3
+
+backward_walking_distance: 1.0
+backward_walking_duration: 10
+
+waling_start: 10
