@@ -248,9 +248,9 @@ void BodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
 
         // com_pos[i] = sp_->jjpos_body_pos_[i] + body_pt_offset_[i];
     }
-    printf("planning com state: %f, %f, %f, %f\n",
-            com_pos[0], com_pos[1],
-            com_vel[0], com_vel[1]);
+    // printf("planning com state: %f, %f, %f, %f\n",
+    //        com_pos[0], com_pos[1],
+    //        com_vel[0], com_vel[1]);
 
     OutputReversalPL pl_output;
     ParamReversalPL pl_param;
@@ -285,7 +285,7 @@ void BodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
     for(int i(0); i<2; ++i){
         target_loc[i] += foot_landing_offset_[i];
     }
-    dynacore::pretty_print(target_loc, std::cout, "next foot loc");
+    // dynacore::pretty_print(target_loc, std::cout, "next foot loc");
 }
 
 void BodyFootPlanningCtrl::FirstVisit(){
@@ -338,8 +338,8 @@ void BodyFootPlanningCtrl::_SetMinJerkOffset(const dynacore::Vect3 & offset){
 
 bool BodyFootPlanningCtrl::EndOfPhase(){
     if(state_machine_time_ > (end_time_ + waiting_time_limit_)){
-        printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
-                state_machine_time_, end_time_);
+        // printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
+        //        state_machine_time_, end_time_);
         return true;
     }
     // Swing foot contact = END
@@ -352,9 +352,9 @@ bool BodyFootPlanningCtrl::EndOfPhase(){
             contact_happen = true;
         }
         if(state_machine_time_ > end_time_ * 0.5 && contact_happen){
-            printf("[Config Body Foot Ctrl] contact happen, state_machine_time/ end time: (%f, %f)\n",
-                    state_machine_time_, end_time_);
-            return true;
+        //    printf("[Config Body Foot Ctrl] contact happen, state_machine_time/ end time: (%f, %f)\n",
+        //             state_machine_time_, end_time_);
+             return true;
         }
     }
     return false;

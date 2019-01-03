@@ -237,9 +237,9 @@ void ConfigBodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
     // Direct value used
     robot_sys_->getCoMPosition(com_pos);
     robot_sys_->getCoMVelocity(com_vel);
-    printf("CoM state: %f, %f, %f, %f\n",
-        com_pos[0], com_pos[1],
-        com_vel[0], com_vel[1]);
+    // printf("CoM state: %f, %f, %f, %f\n",
+    //    com_pos[0], com_pos[1],
+    //    com_vel[0], com_vel[1]);
  
     // Average velocity computation
     for(int i(0); i<2; ++i){ 
@@ -259,9 +259,9 @@ void ConfigBodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
         //com_vel[i] = sp_->est_mocap_body_vel_[i];
         //com_vel[i] = sp_->Qdot_[i];
     }
-   printf("planning state: %f, %f, %f, %f\n",
-        com_pos[0], com_pos[1],
-        com_vel[0], com_vel[1]);
+   // printf("planning state: %f, %f, %f, %f\n",
+   //     com_pos[0], com_pos[1],
+   //     com_vel[0], com_vel[1]);
 
 
     OutputReversalPL pl_output;
@@ -298,7 +298,7 @@ void ConfigBodyFootPlanningCtrl::_Replanning(dynacore::Vect3 & target_loc){
  
     target_loc[2] = initial_target_loc_[2];
     // target_loc[2] -= push_down_height_;
-    dynacore::pretty_print(target_loc, std::cout, "next foot loc");
+    // dynacore::pretty_print(target_loc, std::cout, "next foot loc");
 }
 
 void ConfigBodyFootPlanningCtrl::FirstVisit(){
@@ -353,8 +353,8 @@ void ConfigBodyFootPlanningCtrl::_SetMinJerkOffset(const dynacore::Vect3 & offse
 
 bool ConfigBodyFootPlanningCtrl::EndOfPhase(){
     if(state_machine_time_ > (end_time_ + waiting_time_limit_)){
-        printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
-            state_machine_time_, end_time_);
+        //printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
+        //    state_machine_time_, end_time_);
         return true;
     }
     // Swing foot contact = END
@@ -367,8 +367,8 @@ bool ConfigBodyFootPlanningCtrl::EndOfPhase(){
             contact_happen = true;
         }
         if(state_machine_time_ > end_time_ * 0.5 && contact_happen){
-            printf("[Config Body Foot Ctrl] contact happen, state_machine_time/ end time: (%f, %f)\n",
-                    state_machine_time_, end_time_);
+            // printf("[Config Body Foot Ctrl] contact happen, state_machine_time/ end time: (%f, %f)\n",
+            //        state_machine_time_, end_time_);
             return true;
         }
     }
