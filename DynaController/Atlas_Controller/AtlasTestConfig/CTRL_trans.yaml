@@ -1,4 +1,4 @@
-max_rf_z: 300
+max_rf_z: 1500
 min_rf_z: 10
 
 ## Feedback Gain

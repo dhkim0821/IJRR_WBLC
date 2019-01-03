@@ -7,7 +7,7 @@
 SingleContact::SingleContact(const RobotSystem* robot, int pt):
     WBLC_ContactSpec(6),
     contact_pt_(pt),
-    max_Fz_(1000.),
+    max_Fz_(1500.),
     dim_U_(18)
 {
     idx_Fz_ = 5;

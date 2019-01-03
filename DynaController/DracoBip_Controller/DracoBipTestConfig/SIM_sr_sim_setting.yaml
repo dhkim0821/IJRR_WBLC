@@ -1,7 +1,7 @@
 initial_posture: 2
 #hanging_height: 1.15
 hanging_height: 0.8
-num_substep_rendering: 100
+num_substep_rendering: 200
 
 releasing_time: 40
 #releasing_time: 1000
