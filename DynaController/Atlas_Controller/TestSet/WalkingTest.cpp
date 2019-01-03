@@ -98,8 +98,8 @@ int WalkingTest::_NextPhase(const int & phase){
 
         sp_->global_pos_local_ += next_local_frame_location;
         
-        dynacore::pretty_print(next_local_frame_location, std::cout, "landing loc");
-        printf("%i th step:\n", num_step_);
+        // dynacore::pretty_print(next_local_frame_location, std::cout, "landing loc");
+        // printf("%i th step:\n", num_step_);
     }
     if(phase == WkPhase::double_contact_2){
         ++num_step_;
@@ -110,8 +110,8 @@ int WalkingTest::_NextPhase(const int & phase){
         robot_sys_->getPos(atlas_link::rightFoot, next_local_frame_location);
         sp_->global_pos_local_ += next_local_frame_location;
         
-        dynacore::pretty_print(next_local_frame_location, std::cout, "landing loc");
-        printf("%i th step:\n", num_step_);
+        // dynacore::pretty_print(next_local_frame_location, std::cout, "landing loc");
+        // printf("%i th step:\n", num_step_);
     }
 
     sp_->num_step_copy_ = num_step_;

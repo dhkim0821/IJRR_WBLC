@@ -228,7 +228,7 @@ void Reversal_LIPM_Planner::PlannerInitialization(const std::string & file){
 
 void Reversal_LIPM_Planner::CheckEigenValues(double swing_time){
   dynacore::Matrix A(2,2);
-  printf("omega, swing_time: %f, %f\n", omega_, swing_time);
+  // printf("omega, swing_time: %f, %f\n", omega_, swing_time);
 
   for(int i(0); i<2; ++i){
     double coth = cosh(omega_*t_prime_[i])/ sinh(omega_*t_prime_[i]);
@@ -239,8 +239,8 @@ void Reversal_LIPM_Planner::CheckEigenValues(double swing_time){
     A(1, 1) = cosh(omega_ * swing_time) - sinh(omega_ * swing_time) * coth;
 
     Eigen::VectorXcd eivals = A.eigenvalues();
-    printf("%d - axis eigen value:\n", i);
-    std::cout<<eivals<<std::endl;
+    // printf("%d - axis eigen value:\n", i);
+    // std::cout<<eivals<<std::endl;
   }
 
 }

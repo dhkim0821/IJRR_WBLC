@@ -119,7 +119,7 @@ int WalkingConfigTest::_NextPhase(const int & phase){
     if(phase == WkConfigPhase::double_contact_1) {
         //if(phase == WkConfigPhase::right_swing_start_trans) {
         ++num_step_;
-        printf("%i th step:\n", num_step_);
+        //printf("%i th step:\n", num_step_);
         // printf("One swing done: Next Right Leg Swing\n");
         sp_->stance_foot_ = mercury_link::leftFoot;
 
@@ -135,7 +135,7 @@ int WalkingConfigTest::_NextPhase(const int & phase){
     if(phase == WkConfigPhase::double_contact_2){
         //if(phase == WkConfigPhase::left_swing_start_trans){
         ++num_step_;
-        printf("%i th step:\n", num_step_);
+        // printf("%i th step:\n", num_step_);
 
         sp_->stance_foot_ = mercury_link::rightFoot;
 

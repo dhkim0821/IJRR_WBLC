@@ -40,7 +40,7 @@ void BodyConfigTest::TestInitialization(){
 
 int BodyConfigTest::_NextPhase(const int & phase){
   int next_phase = phase + 1;
-  printf("next phase: %i\n", next_phase);
+  // printf("next phase: %i\n", next_phase);
   if (next_phase == NUM_BCJPOS_PHASE) {
     return BodyConfigPhase::BCJPOS_body_ctrl;
   }
