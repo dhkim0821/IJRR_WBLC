@@ -38,7 +38,7 @@ Atlas_Dyn_environment::Atlas_Dyn_environment():
     m_Space->SetTimestep(atlas::servo_rate);
     m_Space->SetGravity(0.0,0.0,-9.81);
 
-    m_Space->SetNumberofSubstepForRendering(100);
+    m_Space->SetNumberofSubstepForRendering(50);
 
     //std::cout<<robot_->link_[robot_->link_idx_map_.find("r_foot")->second]
         //->GetPosition()<<std::endl;;

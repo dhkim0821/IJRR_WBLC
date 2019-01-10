@@ -1,7 +1,7 @@
 initial_posture: 1
 # hanging_height: 1.15
 hanging_height: 0.95
-num_substep_rendering: 120
+num_substep_rendering: 50
 releasing_time: 4.5
 # releasing_time: 100
 imu_angular_velocity_bias: [0, 0, 0]
