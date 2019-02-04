@@ -1,14 +1,5 @@
 # needed packages
 
-# Allow users to specify location of Zlib, 
-# Useful if zlib is being built alongside this as a sub-project
-option(PNG_BUILD_ZLIB "Custom zlib Location, else find_package is used" OFF)
-
-IF(NOT PNG_BUILD_ZLIB)
-  find_package(ZLIB REQUIRED)
-  include_directories(${ZLIB_INCLUDE_DIR})
-ENDIF(NOT PNG_BUILD_ZLIB)
-
 if(NOT WIN32)
   find_library(M_LIBRARY
     NAMES m
@@ -23,7 +14,9 @@ else()
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pnglibconf.h.prebuilt  ${CMAKE_CURRENT_BINARY_DIR}/pnglibconf.h)
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/pnglibconf.h.prebuilt  
+    ${CMAKE_CURRENT_BINARY_DIR}/pnglibconf.h)
 
 # OUR SOURCES
 set(libpng_public_hdrs
@@ -57,5 +50,16 @@ set(libpng_sources
   pngwutil.c
 )
 add_library(png SHARED ${libpng_sources})
-target_link_libraries(png ${ZLIB_LIBRARY} ${M_LIBRARY})
+target_link_libraries(png ${M_LIBRARY})
+
+find_package(ZLIB)
+IF(ZLIB_FOUND )
+    find_package(ZLIB REQUIRED)
+    include_directories(${ZLIB_INCLUDE_DIR})
+    target_link_libraries(png ${ZLIB_LIBRARY})
+else( ZLIB_FOUND)
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../assimp/contrib/zlib/)
+    target_link_libraries(png zlib)
+ENDIF(ZLIB_FOUND)
+
 
