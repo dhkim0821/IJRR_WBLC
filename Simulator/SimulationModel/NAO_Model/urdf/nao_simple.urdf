@@ -104,7 +104,7 @@
       <geometry>
         <mesh filename="../meshes/LHipRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
@@ -130,7 +130,7 @@
       <geometry>
         <mesh filename="../meshes/LHipPitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0.0 0. 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
@@ -156,7 +156,7 @@
       <geometry>
         <mesh filename="../meshes/LKneePitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
@@ -208,13 +208,13 @@
       <geometry>
         <mesh filename="../meshes/LAnkleRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
         <mesh filename="../meshes/LAnkleRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
   </link>
  <joint name="RHipYawPitch" type="revolute">
@@ -235,13 +235,13 @@
       <geometry>
         <mesh filename="../meshes/RHipYawPitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RHipYawPitch.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="RHipRoll" type="revolute">
@@ -261,13 +261,13 @@
       <geometry>
         <mesh filename="../meshes/RHipRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RHipRoll.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="RHipPitch" type="revolute">
@@ -287,13 +287,13 @@
       <geometry>
         <mesh filename="../meshes/RHipPitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0. 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RHipPitch.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="RKneePitch" type="revolute">
@@ -313,13 +313,13 @@
       <geometry>
         <mesh filename="../meshes/RKneePitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RKneePitch.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="RAnklePitch" type="revolute">
@@ -339,13 +339,13 @@
       <geometry>
         <mesh filename="../meshes/RAnklePitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RAnklePitch.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="RAnkleRoll" type="revolute">
@@ -365,13 +365,13 @@
       <geometry>
         <mesh filename="../meshes/RAnkleRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
         <mesh filename="../meshes/RAnkleRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
   </link>
 
@@ -419,13 +419,13 @@
       <geometry>
         <mesh filename="../meshes/LShoulderPitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/LShoulderPitch.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="LShoulderRoll" type="revolute">
@@ -445,13 +445,13 @@
       <geometry>
         <mesh filename="../meshes/LShoulderRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/LShoulderRoll.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <!--<joint name="LElbowYaw" type="revolute">-->
@@ -487,13 +487,13 @@
       <geometry>
         <mesh filename="../meshes/LElbowRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/LElbowRoll.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <!--<joint name="LWristYaw" type="revolute">-->
@@ -514,13 +514,13 @@
       <geometry>
         <mesh filename="../meshes/LWristYaw.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/LWristYaw.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <!--<joint name="LHand" type="revolute">-->
@@ -554,13 +554,13 @@
       <geometry>
         <mesh filename="../meshes/RShoulderPitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RShoulderPitch.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <joint name="RShoulderRoll" type="revolute">
@@ -580,13 +580,13 @@
       <geometry>
         <mesh filename="../meshes/RShoulderRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
         <!--<mesh filename="../meshes/RShoulderRoll.3ds" scale="0.1 0.1 0.1"/>-->
       <!--</geometry>-->
-      <!--<origin rpy="1.57080 0 0" xyz="0 0 0"/>-->
+      <!--<origin rpy="0 0 0" xyz="0 0 0"/>-->
     <!--</collision>-->
   </link>
   <!--<joint name="RElbowYaw" type="revolute">-->
@@ -621,13 +621,13 @@
       <geometry>
         <mesh filename="../meshes/RElbowRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
         <mesh filename="../meshes/RElbowRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
   </link>
   <!--<joint name="RWristYaw" type="revolute">-->
@@ -648,13 +648,13 @@
       <geometry>
         <mesh filename="../meshes/RWristYaw.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
         <mesh filename="../meshes/RWristYaw.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
   </link>
   <!--<joint name="RHand" type="revolute">-->
@@ -803,7 +803,7 @@
       <geometry>
         <mesh filename="../meshes/RFinger13.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="00 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->

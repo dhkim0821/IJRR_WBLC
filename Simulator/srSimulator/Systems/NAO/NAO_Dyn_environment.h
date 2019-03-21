@@ -1,7 +1,7 @@
 #ifndef DYN_ENVIRONMENT_NAO
 #define DYN_ENVIRONMENT_NAO
 
-#include "nao.h"
+#include "NAO.h"
 #include "srDyn/srSystem.h"
 #include "srDyn/srCollision.h"
 #include "Ground.h"
@@ -19,7 +19,9 @@
 #endif
 ////////////////////////////////////////////////
 
-class Interface;
+#include <DynaController/NAO_Controller/NAO_DynaCtrl_Definition.h>
+
+class interface;
 class srSpace;
 class Ground;
 class srNao;
@@ -43,11 +45,17 @@ class NAO_Dyn_environment
         static void ContolFunction(void* _data);
 
         void Rendering_Fnc();
+        NAO_SensorData* data_;
+        NAO_Command* cmd_;
+
 
         void SetCurrentState_All();
         void saveLandingLocation();
+        void getIMU_Data(std::vector<double> & imu_acc,
+                std::vector<double> & imu_ang_vel);
+        void _CheckFootContact(bool & r_contact, bool & l_contact);
     public:
-        Interface* interface_;
+        interface* interface_;
         srNao* robot_;
 
         srSpace*	m_Space;

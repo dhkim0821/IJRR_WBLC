@@ -16,7 +16,7 @@ class NAO_Kin_Model{
         void getAngularVel(int link_id, dynacore::Vect3 & ang_vel);
 
         void getJacobian(int link_id, dynacore::Matrix & J);
-        void getJacobianDot6D_Analytic(int link_id, dynacore::Matrix & J);
+        void getJDotQdot(int link_id, dynacore::Vector & JDotQdot);
 
         void getCoMJacobian  (dynacore::Matrix & J);
         void getCoMPos  (dynacore::Vect3 & com_pos);

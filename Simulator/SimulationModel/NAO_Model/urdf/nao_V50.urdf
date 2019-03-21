@@ -108,7 +108,7 @@
       <geometry>
         <mesh filename="../meshes/LHipRoll.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->
@@ -247,7 +247,7 @@
       <geometry>
         <mesh filename="../meshes/RHipYawPitch.3ds" scale="0.1 0.1 0.1"/>
       </geometry>
-      <origin rpy="1.57080 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <!--<collision>-->
       <!--<geometry>-->

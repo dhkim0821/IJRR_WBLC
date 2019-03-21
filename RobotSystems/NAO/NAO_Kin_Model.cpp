@@ -226,22 +226,19 @@ void NAO_Kin_Model::getJacobian(int link_id, dynacore::Matrix &J){
     }
 }
 
-void NAO_Kin_Model::getJacobianDot6D_Analytic(int link_id, dynacore::Matrix & J){
-    J = dynacore::Matrix::Zero(6, model_->qdot_size);
-    dynacore::Vector q, qdot; //dummy
-    
-    unsigned int bodyid = _find_body_idx(link_id);
+void NAO_Kin_Model::getJDotQdot(int link_id, dynacore::Vector & JDotQdot){
+    dynacore::Vector q, qdot, qddot; //dummy
 
+    unsigned int bodyid = _find_body_idx(link_id);
     if(bodyid >=model_->fixed_body_discriminator){
-        CalcPointJacobianDot(*model_, q, qdot, bodyid,
-                model_->mFixedBodies[bodyid - model_->fixed_body_discriminator].mCenterOfMass,
-                J, false);
+        JDotQdot = CalcPointAcceleration6D(*model_, q, qdot, qddot, bodyid,
+                model_->mFixedBodies[bodyid - model_->fixed_body_discriminator].mCenterOfMass, false);
     }
     else{
-        CalcPointJacobianDot(*model_, q, qdot, bodyid,
-                model_->mBodies[bodyid].mCenterOfMass,
-                J, false);
+        JDotQdot = CalcPointAcceleration6D(*model_, q, qdot, qddot, bodyid,
+                model_->mBodies[bodyid].mCenterOfMass, false);
     }
+    JDotQdot[5] -= 9.81;
 }
 
 unsigned int NAO_Kin_Model::_find_body_idx(int id) const {
