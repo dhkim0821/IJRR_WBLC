@@ -29,7 +29,7 @@ NAO_Dyn_environment::NAO_Dyn_environment():
             srJoint::TORQUE, ModelPath"NAO_Model/urdf/nao_simple.urdf");
     m_Space->AddSystem((srSystem*)robot_);
 
-    //interface_ = new Interface();
+    interface_ = new NAO_interface();
     //contact_pt_list_.clear();
     contact_force_list_.clear();
 

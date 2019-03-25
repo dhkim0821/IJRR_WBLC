@@ -57,7 +57,7 @@ void srNao::_SetInitialConf(){
 
     switch (pose) {
         case 0:
-            vp_joint_[2]->m_State.m_rValue[0] = 0.376-0.004;
+            vp_joint_[2]->m_State.m_rValue[0] = 0.326-0.004;
             r_joint_[r_joint_idx_map_.find("LShoulderPitch")->second]->
                 m_State.m_rValue[0] = 1.5;
             r_joint_[r_joint_idx_map_.find("RShoulderPitch")->second]->
@@ -66,17 +66,11 @@ void srNao::_SetInitialConf(){
                 m_State.m_rValue[0] = 0.5;
             r_joint_[r_joint_idx_map_.find("RShoulderRoll")->second]->
                 m_State.m_rValue[0] = -0.5;
-            r_joint_[r_joint_idx_map_.find("LElbowYaw")->second]->
-                m_State.m_rValue[0] = -1.5;
-            r_joint_[r_joint_idx_map_.find("RElbowYaw")->second]->
-                m_State.m_rValue[0] = 1.5;
 
             r_joint_[r_joint_idx_map_.find("LKneePitch")->second]->m_State.m_rValue[0] = 0.3;
             r_joint_[r_joint_idx_map_.find("RKneePitch")->second]->m_State.m_rValue[0] = 0.3;
             r_joint_[r_joint_idx_map_.find("LAnklePitch")->second]->m_State.m_rValue[0] = -0.3;
             r_joint_[r_joint_idx_map_.find("RAnklePitch")->second]->m_State.m_rValue[0] = -0.3;
-            r_joint_[r_joint_idx_map_.find("LHipYawPitch")->second]->
-                m_State.m_rValue[0] = -0.2;
              break;
 
         case 1:
@@ -85,16 +79,6 @@ void srNao::_SetInitialConf(){
                 m_State.m_rValue[0] = 1.5;
             r_joint_[r_joint_idx_map_.find("RShoulderPitch")->second]->
                 m_State.m_rValue[0] = 1.5;
-            r_joint_[r_joint_idx_map_.find("LShoulderRoll")->second]->
-                m_State.m_rValue[0] = 0.5;
-            r_joint_[r_joint_idx_map_.find("RShoulderRoll")->second]->
-                m_State.m_rValue[0] = -0.5;
-            r_joint_[r_joint_idx_map_.find("LElbowYaw")->second]->
-                m_State.m_rValue[0] = -1.5;
-            r_joint_[r_joint_idx_map_.find("RElbowYaw")->second]->
-                m_State.m_rValue[0] = 1.5;
-            r_joint_[r_joint_idx_map_.find("LHipYawPitch")->second]->
-                m_State.m_rValue[0] = -0.2;
             break;
     }
 

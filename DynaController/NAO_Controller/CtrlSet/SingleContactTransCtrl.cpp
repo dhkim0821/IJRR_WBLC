@@ -146,7 +146,7 @@ void SingleContactTransCtrl::_task_setup(){
 
     if(b_increase_){
         if(moving_foot_ == nao_link::r_ankle){
-            int swing_jidx = nao_joint::r_leg_hpz - nao::num_virtual;
+            int swing_jidx = nao_joint::RAnkleRoll - nao::num_virtual;
             double h(state_machine_time_/end_time_);
 
             for(int i(0); i < nao::num_leg_joint; ++i){
@@ -156,7 +156,7 @@ void SingleContactTransCtrl::_task_setup(){
              }
         }
         else if(moving_foot_ == nao_link::l_ankle){
-            int swing_jidx = nao_joint::l_leg_hpz - nao::num_virtual;
+            int swing_jidx = nao_joint::LAnkleRoll - nao::num_virtual;
             double h(state_machine_time_/end_time_);
 
             for(int i(0); i < nao::num_leg_joint; ++i){

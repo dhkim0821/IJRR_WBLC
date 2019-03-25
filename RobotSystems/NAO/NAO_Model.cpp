@@ -16,7 +16,7 @@ NAO_Model::NAO_Model(){
         //abort();
     //}
     if (!Addons::URDFReadFromFile (THIS_COM"/RobotSystems/NAO/nao_simple.urdf",
-                model_, false)) {
+                model_, true, false)) {
         std::cerr << "Error loading model nao_simple.urdf" << std::endl;
         abort();
     }

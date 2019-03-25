@@ -2,54 +2,76 @@
 #define NAO_DEFINITION
 
 namespace nao_joint{
+    constexpr int  virtual_X = 0;
     constexpr int  virtual_Y = 1;
     constexpr int  virtual_Z = 2;
     constexpr int  virtual_Rx = 3;
     constexpr int  virtual_Ry = 4;
     constexpr int  virtual_Rz = 5;
 
-    constexpr int back_bkz = 6;
-    constexpr int back_bky = 7;
-    constexpr int back_bkx = 8;
-   
-    constexpr int l_arm_shy = 9;
-    constexpr int l_arm_shx = 10;
-    constexpr int l_arm_ely = 11;
-    constexpr int l_arm_elx = 12;
-    constexpr int l_arm_wry = 13;
-    constexpr int l_arm_wrx = 14;
-      
-    constexpr int r_arm_shy = 15;
-    constexpr int r_arm_shx = 16;
-    constexpr int r_arm_ely = 17;
-    constexpr int r_arm_elx = 18;
-    constexpr int r_arm_wry = 19;
-    constexpr int r_arm_wrx = 20;
+    // Left Leg
+    constexpr int  LHipYawPitch = 6;
+    constexpr int  LHipRoll = 7;
+    constexpr int  LHipPitch = 8;
+    constexpr int  LKneePitch = 9;
+    constexpr int  LAnklePitch = 10;
+    constexpr int  LAnkleRoll = 11;
 
-    constexpr int l_leg_hpz = 21;
-    constexpr int l_leg_hpx = 22;
-    constexpr int l_leg_hpy = 23;
-    constexpr int l_leg_kny = 24;
-    constexpr int l_leg_aky = 25;
-    constexpr int l_leg_akx = 26;
+    // Left Arm
+    constexpr int  LShoulderPitch = 12;
+    constexpr int  LShoulderRoll = 13; 
 
-    constexpr int r_leg_hpz = 27;
-    constexpr int r_leg_hpx = 28;
-    constexpr int r_leg_hpy = 29;
-    constexpr int r_leg_kny = 30;
-    constexpr int r_leg_aky = 31;
-    constexpr int r_leg_akx = 32;
+    // Right Leg
+    constexpr int  RHipYawPitch = 14; 
+    constexpr int  RHipRoll = 15; 
+    constexpr int  RHipPitch = 16; 
+    constexpr int  RKneePitch = 17; 
+    constexpr int  RAnklePitch = 18; 
+    constexpr int  RAnkleRoll = 19; 
 
-    constexpr int  virtual_Rw = 33;
+    // Right Arm
+    constexpr int  RShoulderPitch = 20; 
+    constexpr int  RShoulderRoll = 21; 
+
+    constexpr int  virtual_Rw = 22;
+
+    // Fixed Joint
+    //joint 'HeadPitch' child link 'Head' type = 6
+    //joint 'LFoot/FSR/FrontLeft_sensor_fixedjoint' child link 'LFsrFL_frame' type = 6
+    //joint 'LFoot/FSR/FrontRight_sensor_fixedjoint' child link 'LFsrFR_frame' type = 6
+    //joint 'LFoot/FSR/RearLeft_sensor_fixedjoint' child link 'LFsrRL_frame' type = 6
+    //joint 'LFoot/FSR/RearRight_sensor_fixedjoint' child link 'LFsrRR_frame' type = 6
+    //joint 'LElbowYaw' child link 'LElbow' type = 6
+    //joint 'LElbowRoll' child link 'LForeArm' type = 6
+    //joint 'LWristYaw' child link 'l_wrist' type = 6
+    //joint 'LFinger11' child link 'LFinger11_link' type = 6
+    //joint 'LFinger12' child link 'LFinger12_link' type = 6
+    //joint 'LFinger13' child link 'LFinger13_link' type = 6
+    //joint 'LFinger21' child link 'LFinger21_link' type = 6
+    //joint 'LFinger22' child link 'LFinger22_link' type = 6
+    //joint 'LFinger23' child link 'LFinger23_link' type = 6
+    //joint 'LHand' child link 'l_gripper' type = 6
+    //joint 'LThumb1' child link 'LThumb1_link' type = 6
+    //joint 'LThumb2' child link 'LThumb2_link' type = 6
+    //joint 'RFoot/FSR/FrontLeft_sensor_fixedjoint' child link 'RFsrFL_frame' type = 6
+    //joint 'RFoot/FSR/FrontRight_sensor_fixedjoint' child link 'RFsrFR_frame' type = 6
+    //joint 'RFoot/FSR/RearLeft_sensor_fixedjoint' child link 'RFsrRL_frame' type = 6
+    //joint 'RFoot/FSR/RearRight_sensor_fixedjoint' child link 'RFsrRR_frame' type = 6
+    //joint 'RElbowYaw' child link 'RElbow' type = 6
+    //joint 'RElbowRoll' child link 'RForeArm' type = 6
+    //joint 'RWristYaw' child link 'r_wrist' type = 6
+    //joint 'RFinger11' child link 'RFinger11_link' type = 6
+    //joint 'RFinger12' child link 'RFinger12_link' type = 6
+    //joint 'RFinger13' child link 'RFinger13_link' type = 6
+    //joint 'RFinger21' child link 'RFinger21_link' type = 6
+    //joint 'RFinger22' child link 'RFinger22_link' type = 6
+    //joint 'RFinger23' child link 'RFinger23_link' type = 6
+    //joint 'RHand' child link 'r_gripper' type = 6
+    //joint 'RThumb1' child link 'RThumb1_link' type = 6
+    //joint 'RThumb2' child link 'RThumb2_link' type = 6
 }
 
-
-
 namespace nao{
-    //constexpr int num_q = 31;
-    //constexpr int num_qdot = 30;
-    //constexpr int num_act_joint = 24;//2 + 6 x2 + 5 x2
-
     // Simple version
     constexpr int num_q = 23;
     constexpr int num_qdot = 22;
@@ -59,8 +81,6 @@ namespace nao{
     constexpr double servo_rate = 0.001;
 
     constexpr int num_leg_joint = 6;
-    constexpr int upper_body_start_jidx = nao_joint::l_arm_shy;
-    constexpr int num_upper_joint = 12;
 };
 
 namespace nao_link{
@@ -69,17 +89,17 @@ namespace nao_link{
 
     constexpr int r_ankle = 2;
     constexpr int l_ankle = 3;
-    
+
     constexpr int RFsrFL_frame = 5;
     constexpr int RFsrFR_frame = 6;
     constexpr int RFsrRL_frame = 7;
     constexpr int RFsrRR_frame = 8;
-    
+
     constexpr int LFsrFL_frame = 9;
     constexpr int LFsrFR_frame = 10;
     constexpr int LFsrRL_frame = 11;
     constexpr int LFsrRR_frame = 12;
-    
+
     constexpr int l_sole = 13;
     constexpr int r_sole = 14;
 }
