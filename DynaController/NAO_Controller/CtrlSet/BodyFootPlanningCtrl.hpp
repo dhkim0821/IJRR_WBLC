@@ -18,7 +18,6 @@ class BodyFootPlanningCtrl:public SwingPlanningCtrl{
 
         virtual void CtrlInitialization(const std::string & setting_file_name);
     protected:
-        double waiting_time_limit_;
         double ini_base_height_;
         int swing_leg_jidx_;
         double push_down_height_; // push foot below the ground at landing
@@ -62,6 +61,7 @@ class BodyFootPlanningCtrl:public SwingPlanningCtrl{
         dynacore::Vect3 ini_body_pos_;
         dynacore::Vect3 ini_com_pos_;
         dynacore::Vect3 ini_foot_pos_;
+        dynacore::Quaternion ini_foot_quat_;
         dynacore::Vect2 body_pt_offset_;
         
         dynacore::Vector ini_config_;

@@ -11,7 +11,6 @@ BodyCtrlTest::BodyCtrlTest(RobotSystem* robot):Test(robot){
     state_list_.clear();
 
     body_ctrl_ = new BodyCtrl(robot);
-    
     state_list_.push_back(body_ctrl_);
 
     _SettingParameter();

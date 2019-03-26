@@ -21,7 +21,6 @@ BodyFootPlanningCtrl::BodyFootPlanningCtrl(
     des_jpos_(nao::num_act_joint),
     des_jvel_(nao::num_act_joint),
     des_jacc_(nao::num_act_joint),
-    waiting_time_limit_(0.02),
     Kp_(nao::num_act_joint),
     Kd_(nao::num_act_joint)
 {
@@ -44,9 +43,9 @@ BodyFootPlanningCtrl::BodyFootPlanningCtrl(
     kin_wbc_ = new KinWBC(act_list);
     wblc_ = new WBLC(act_list);
     wblc_data_ = new WBLC_ExtraData();
-    wblc_data_->W_qddot_ = dynacore::Vector::Constant(nao::num_qdot, 100.0);
+    wblc_data_->W_qddot_ = dynacore::Vector::Constant(nao::num_qdot, 10.0);
     wblc_data_->W_rf_ = dynacore::Vector::Constant(dim_contact_, 1.0);
-    wblc_data_->W_xddot_ = dynacore::Vector::Constant(dim_contact_, 1000.0);
+    wblc_data_->W_xddot_ = dynacore::Vector::Constant(dim_contact_, 100.0);
     wblc_data_->W_rf_[rfoot_contact_->getFzIndex()] = 0.01;
     wblc_data_->W_rf_[rfoot_contact_->getDim() + lfoot_contact_->getFzIndex()] = 0.01;
 
@@ -143,10 +142,11 @@ void BodyFootPlanningCtrl::_task_setup(){
     body_pos_task_->UpdateTask(&(des_pos), vel_des, acc_des);
     
     // Body & Foot Orientation
-    dynacore::Vect3 rpy_des;
+    //dynacore::Vect3 rpy_des;
     dynacore::Quaternion des_quat;
-    rpy_des.setZero();
-    dynacore::convert(rpy_des, des_quat);
+    //rpy_des.setZero();
+    //dynacore::convert(rpy_des, des_quat);
+    des_quat = ini_foot_quat_;
     dynacore::Vector ang_vel_des(3); ang_vel_des.setZero();
     dynacore::Vector ang_acc_des(3); ang_acc_des.setZero();
 
@@ -164,8 +164,8 @@ void BodyFootPlanningCtrl::_task_setup(){
 
     // Task Update
     task_list_.push_back(foot_pos_task_);
-    task_list_.push_back(body_pos_task_);
-    task_list_.push_back(body_ori_task_);
+    //task_list_.push_back(body_pos_task_);
+    //task_list_.push_back(body_ori_task_);
     task_list_.push_back(foot_ori_task_);
     task_list_.push_back(total_joint_task_);
 
@@ -174,8 +174,8 @@ void BodyFootPlanningCtrl::_task_setup(){
 }
 
 void BodyFootPlanningCtrl::_foot_pos_task_setup(){
-    //_GetSinusoidalSwingTrajectory();
-    _GetBsplineSwingTrajectory();
+    _GetSinusoidalSwingTrajectory();
+    //_GetBsplineSwingTrajectory();
 
     double traj_time = state_machine_time_ - half_swing_time_;
     if(state_machine_time_ > half_swing_time_){
@@ -204,8 +204,14 @@ void BodyFootPlanningCtrl::_foot_pos_task_setup(){
     foot_vel_des = curr_foot_vel_des_;
     foot_acc_des = curr_foot_acc_des_;
 
+    //foot_pos_task_->UpdateTask(
+            //&(curr_foot_pos_des_), 
+            //foot_vel_des, 
+            //foot_acc_des);
+    foot_vel_des.setZero();
+    foot_acc_des.setZero();
     foot_pos_task_->UpdateTask(
-            &(curr_foot_pos_des_), 
+            &(ini_foot_pos_), 
             foot_vel_des, 
             foot_acc_des);
 }
@@ -289,6 +295,7 @@ void BodyFootPlanningCtrl::FirstVisit(){
     ini_config_ = sp_->Q_;
     robot_sys_->getPos(nao_link::torso, ini_body_pos_);
     robot_sys_->getPos(swing_foot_, ini_foot_pos_);
+    robot_sys_->getOri(swing_foot_, ini_foot_quat_);
     ctrl_start_time_ = sp_->curr_time_;
     state_machine_time_ = 0.;
     replan_moment_ = 0.;
@@ -297,6 +304,7 @@ void BodyFootPlanningCtrl::FirstVisit(){
     initial_target_loc_[1] = sp_->Q_[1] + default_target_loc_[1];
     initial_target_loc_[2] = -push_down_height_;
 
+    //dynacore::pretty_print(ini_foot_pos_, std::cout, "ini foot");
     _SetBspline(ini_foot_pos_, initial_target_loc_);
 
     dynacore::Vect3 foot_pos_offset; foot_pos_offset.setZero();
@@ -333,7 +341,7 @@ void BodyFootPlanningCtrl::_SetMinJerkOffset(const dynacore::Vect3 & offset){
 }
 
 bool BodyFootPlanningCtrl::EndOfPhase(){
-    if(state_machine_time_ > (end_time_ + waiting_time_limit_)){
+    if(state_machine_time_ > (end_time_)){
         // printf("[Body Foot Ctrl] End, state_machine time/ end time: (%f, %f)\n", 
         //        state_machine_time_, end_time_);
         return true;

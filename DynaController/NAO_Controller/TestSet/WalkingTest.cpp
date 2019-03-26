@@ -46,7 +46,6 @@ WalkingTest::WalkingTest(RobotSystem* robot):Test(robot),
 
     _SettingParameter();
 
-    state_list_.push_back(body_up_ctrl_);
     state_list_.push_back(body_fix_ctrl_);
     state_list_.push_back(right_swing_start_trans_ctrl_);
     state_list_.push_back(right_swing_ctrl_);
@@ -83,7 +82,7 @@ void WalkingTest::TestInitialization(){
 
 int WalkingTest::_NextPhase(const int & phase){
     int next_phase = phase + 1;
-    // printf("next phase: %i\n", next_phase);
+    printf("next phase: %i\n", next_phase);
 
     if(phase == WkPhase::double_contact_1) {
         ++num_step_;

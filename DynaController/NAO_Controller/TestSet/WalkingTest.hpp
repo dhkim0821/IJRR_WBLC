@@ -31,7 +31,6 @@ protected:
 
   Planner* reversal_planner_;
 
-  Controller* body_up_ctrl_;
   Controller* body_fix_ctrl_;
   // Right
   Controller* right_swing_start_trans_ctrl_;

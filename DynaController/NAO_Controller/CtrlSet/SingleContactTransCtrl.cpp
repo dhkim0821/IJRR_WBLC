@@ -51,8 +51,8 @@ SingleContactTransCtrl::SingleContactTransCtrl(RobotSystem* robot,
     wblc_data_->W_rf_[rfoot_contact_->getDim() + lfoot_contact_->getFzIndex()] = 0.01;
 
     // torque limit default setting
-    wblc_data_->tau_min_ = dynacore::Vector::Constant(nao::num_act_joint, -500.);
-    wblc_data_->tau_max_ = dynacore::Vector::Constant(nao::num_act_joint, 500.);
+    wblc_data_->tau_min_ = dynacore::Vector::Constant(nao::num_act_joint, -100.);
+    wblc_data_->tau_max_ = dynacore::Vector::Constant(nao::num_act_joint, 100.);
 
     sp_ = NAO_StateProvider::getStateProvider();
     //printf("[Transition Controller] Constructed\n");

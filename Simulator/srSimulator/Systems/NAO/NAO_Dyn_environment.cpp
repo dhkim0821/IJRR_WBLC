@@ -30,14 +30,17 @@ NAO_Dyn_environment::NAO_Dyn_environment():
     m_Space->AddSystem((srSystem*)robot_);
 
     interface_ = new NAO_interface();
+    data_ = new NAO_SensorData();
+    cmd_ = new NAO_Command();
+
     //contact_pt_list_.clear();
-    contact_force_list_.clear();
 
     m_Space->DYN_MODE_PRESTEP();
     m_Space->SET_USER_CONTROL_FUNCTION_2(ContolFunction);
     m_Space->SetTimestep(0.001);
     m_Space->SetGravity(0.0,0.0,-9.81);
     m_Space->SetNumberofSubstepForRendering(20);
+    //m_Space->SetNumberofSubstepForRendering(1);
 
     printf("[Nao Dynamic Environment] Build Dynamic Environment\n");
 }
@@ -68,14 +71,14 @@ void NAO_Dyn_environment::ContolFunction( void* _data ) {
         p_data->imu_acc[i] = -imu_acc[i];
     }
     pDyn_env->interface_->GetCommand(p_data, pDyn_env->cmd_); 
-
+    
     for(int i(0); i<3; ++i){
         robot->vp_joint_[i]->m_State.m_rCommand = 0.0;
         robot->vr_joint_[i]->m_State.m_rCommand = 0.0;
     }
 
     double Kp(50.);
-    double Kd(5.);
+    double Kd(0.5);
      //double Kp(30.);
      //double Kd(0.5);
     for(int i(0); i<robot->num_act_joint_; ++i){
@@ -94,11 +97,11 @@ void NAO_Dyn_environment::_CheckFootContact(bool & r_contact, bool & l_contact){
     //std::cout<<rfoot_pos<<std::endl;
     //std::cout<<lfoot_pos<<std::endl;
 
-    if(  fabs(lfoot_pos[2]) < 0.016){
+    if(  fabs(lfoot_pos[2]) < 0.010){
         l_contact = true;
         //printf("left contact\n");
     }else { l_contact = false; }
-    if (fabs(rfoot_pos[2])<0.016  ){
+    if (fabs(rfoot_pos[2])<0.010  ){
         r_contact = true;
         //printf("right contact\n");
     } else { r_contact = false; }

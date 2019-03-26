@@ -108,11 +108,15 @@ void BodyCtrl::_task_setup(){
     dynacore::Vector acc_des(3); acc_des.setZero();
     dynacore::Vect3 des_pos = ini_body_pos_;
     des_pos[2] = body_height_cmd;
+    double freq(1.);
+    des_pos[2] += 0.04 * (cos(2.*M_PI * freq* state_machine_time_) - 1.);
+    //dynacore::pretty_print(des_pos, std::cout, "des body pos");
     body_pos_task_->UpdateTask(&(des_pos), vel_des, acc_des);
 
     // Set Desired Orientation
     dynacore::Quaternion des_quat;
-    dynacore::convert(0., 0., 0., des_quat);
+    double pitch = -0.0 * sin(2.*M_PI * state_machine_time_);
+    dynacore::convert(0., pitch, 0., des_quat);
 
     dynacore::Vector ang_vel_des(body_ori_task_->getDim()); ang_vel_des.setZero();
     dynacore::Vector ang_acc_des(body_ori_task_->getDim()); ang_acc_des.setZero();
@@ -120,6 +124,7 @@ void BodyCtrl::_task_setup(){
 
     // Joint
     dynacore::Vector jpos_des = sp_->jpos_ini_;
+    //jpos_des[nao_joint::LShoulderPitch - nao::num_virtual] += 0.2*sin(2.*M_PI * state_machine_time_);
     dynacore::Vector jvel_des(nao::num_act_joint); jvel_des.setZero();
     dynacore::Vector jacc_des(nao::num_act_joint); jacc_des.setZero();
     total_joint_task_->UpdateTask(&(jpos_des), jvel_des, jacc_des);
